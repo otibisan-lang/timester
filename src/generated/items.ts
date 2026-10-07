@@ -32,7 +32,7 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-5",
-    "name": "アイロン",
+    "name": "電気アイロン",
     "releaseYear": 1915,
     "maker": "芝浦製作所（現・東芝）",
     "trivia": "芝浦製作所（国産第1号）。輸入は1914年"
@@ -179,7 +179,7 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-26",
-    "name": "消しゴム",
+    "name": "プラスチック消しゴム",
     "releaseYear": 1959,
     "maker": "シードゴム工業（現・シード）",
     "trivia": "シードゴム工業（現シード）が世界初のプラスチック消しゴムを発売"
@@ -193,7 +193,7 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-28",
-    "name": "こたつ",
+    "name": "電気こたつ",
     "releaseYear": 1929,
     "maker": "松下電器（現・パナソニック）",
     "trivia": "松下電器が電気こたつを発売"
@@ -557,7 +557,7 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-82",
-    "name": "冷蔵庫",
+    "name": "電気冷蔵庫",
     "releaseYear": 1930,
     "maker": "芝浦製作所（現・東芝）",
     "trivia": "芝浦製作所（国産第1号）。輸入品は1923年頃との説あり"
@@ -655,14 +655,14 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-98",
-    "name": "洗濯機",
+    "name": "電気洗濯機",
     "releaseYear": 1922,
     "maker": "",
     "trivia": "米国製「Gainaday」が初輸入。国産初は1930年（芝浦製作所）"
   },
   {
     "id": "item-99",
-    "name": "炊飯器",
+    "name": "電気炊飯器",
     "releaseYear": 1955,
     "maker": "東京芝浦電気（現・東芝）",
     "trivia": "東芝「ER-4」"
