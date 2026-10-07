@@ -16,6 +16,8 @@ const FEEDBACK_FORM_URL =
 
 const APP_VERSION = '1.0.0';
 const LAST_UPDATED = '2026-10-07';
+/** シリーズ内でのこの版の名前（ヘッダー・タイトル画面に表示） */
+const EDITION_NAME = '現代アイテム';
 
 function shuffle<T>(list: T[]): T[] {
   const a = [...list];
@@ -40,7 +42,7 @@ export default function App() {
   const [showCatalog, setShowCatalog] = useState(false);
 
   useEffect(() => {
-    document.title = 'TIMESTER タイムスター';
+    document.title = `TIMESTER タイムスター ${EDITION_NAME}`;
   }, []);
 
   const drawFrom = useCallback((cards: Item[], index: number) => {
@@ -115,7 +117,7 @@ export default function App() {
   return (
     <div className="min-h-[100dvh] bg-theme-bg text-gray-800 font-sans selection:bg-yellow-200 flex flex-col">
       {/* Header */}
-      <header className="bg-theme-coral px-5 pb-5 pt-[max(1.25rem,env(safe-area-inset-top,0px))] flex justify-between items-center shadow-[0_4px_0_rgba(0,0,0,0.1)] relative z-10 shrink-0">
+      <header className="bg-theme-coral px-4 md:px-5 pb-3 md:pb-5 pt-[max(0.75rem,env(safe-area-inset-top,0px))] md:pt-[max(1.25rem,env(safe-area-inset-top,0px))] flex justify-between items-center shadow-[0_4px_0_rgba(0,0,0,0.1)] relative z-10 shrink-0">
         <button
           type="button"
           onClick={onClickHeaderTitle}
@@ -123,7 +125,7 @@ export default function App() {
         >
           TIMESTER
           <span className="text-[10px] md:text-xs font-bold bg-white/20 px-2 py-0.5 rounded-md normal-case not-italic">
-            タイムスター
+            {EDITION_NAME}
           </span>
         </button>
         <button
@@ -154,34 +156,37 @@ export default function App() {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 1.05, opacity: 0 }}
-                className="bg-white rounded-[40px] border-[8px] border-theme-blue p-8 md:p-16 shadow-[12px_12px_0_#4D96FF] flex flex-col items-center text-center max-w-2xl mx-auto"
+                className="bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-blue px-5 py-6 md:p-14 shadow-[8px_8px_0_#4D96FF] md:shadow-[12px_12px_0_#4D96FF] flex flex-col items-center text-center max-w-2xl mx-auto"
               >
-                <div className="w-24 h-24 mb-8 bg-theme-yellow border-4 border-white rounded-3xl flex items-center justify-center shadow-lg transform -rotate-3 text-gray-800">
-                  <Hourglass className="w-12 h-12" />
+                <div className="w-14 h-14 md:w-24 md:h-24 mb-3 md:mb-6 bg-theme-yellow border-4 border-white rounded-2xl md:rounded-3xl flex items-center justify-center shadow-lg transform -rotate-3 text-gray-800">
+                  <Hourglass className="w-7 h-7 md:w-12 md:h-12" />
                 </div>
-                <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 font-display italic tracking-tighter leading-tight">
+                <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-3 md:mb-5 font-display italic tracking-tighter leading-tight">
                   TIMESTER
-                  <span className="block text-xl md:text-2xl mt-1 text-theme-coral opacity-80 not-italic font-bold">
-                    タイムスター
+                  <span className="mt-1 flex items-center justify-center gap-2 not-italic tracking-normal">
+                    <span className="text-lg md:text-2xl text-theme-coral opacity-80 font-bold">タイムスター</span>
+                    <span className="rounded-full bg-theme-yellow px-2 py-0.5 text-[10px] md:text-xs font-black text-gray-800">
+                      {EDITION_NAME}
+                    </span>
                   </span>
                 </h1>
-                <p className="text-gray-600 mb-10 leading-relaxed text-lg max-w-md">
+                <p className="text-gray-600 mb-5 md:mb-8 leading-relaxed text-sm md:text-lg max-w-md">
                   身近な商品の発売年を当てて<br />
                   タイムラインを作ろう！
                 </p>
-                <div className="flex w-full max-w-md flex-col gap-4">
+                <div className="flex w-full max-w-md flex-col gap-3 md:gap-4">
                   <div className="grid grid-cols-2 gap-3">
                     <button
                       id="explain-button"
                       onClick={() => setGameState('EXPLAIN')}
-                      className="bg-theme-blue text-white px-2 py-4 rounded-[18px] font-black text-sm sm:text-base md:text-lg whitespace-nowrap shadow-[0_5px_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-1.5"
+                      className="bg-theme-blue text-white px-2 py-3 md:py-4 rounded-[16px] md:rounded-[18px] font-black text-sm sm:text-base md:text-lg whitespace-nowrap shadow-[0_5px_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-1.5"
                     >
                       あそびかた
                       <ArrowRight className="w-5 h-5 shrink-0" />
                     </button>
                     <button
                       onClick={() => setShowCatalog(true)}
-                      className="bg-white text-theme-blue px-2 py-4 rounded-[18px] font-black text-sm sm:text-base md:text-lg whitespace-nowrap border-2 border-theme-blue/30 shadow-[0_5px_0_rgba(77,150,255,0.2)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
+                      className="bg-white text-theme-blue px-2 py-3 md:py-4 rounded-[16px] md:rounded-[18px] font-black text-sm sm:text-base md:text-lg whitespace-nowrap border-2 border-theme-blue/30 shadow-[0_5px_0_rgba(77,150,255,0.2)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
                     >
                       収録アイテム一覧
                     </button>
@@ -189,17 +194,15 @@ export default function App() {
                   <button
                     id="quick-start-button"
                     onClick={startGame}
-                    className="w-full bg-theme-coral text-white px-8 py-6 rounded-[20px] font-black text-2xl md:text-3xl shadow-[0_6px_0_#D32F2F] hover:scale-[1.03] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3"
+                    className="w-full bg-theme-coral text-white px-8 py-5 md:py-6 rounded-[20px] font-black text-2xl md:text-3xl shadow-[0_6px_0_#D32F2F] hover:scale-[1.03] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3"
                   >
                     <Play className="w-7 h-7 md:w-8 md:h-8 fill-current" />
                     ゲームを始める
                   </button>
                 </div>
-                <div className="mt-8 w-full max-w-md rounded-2xl border-2 border-theme-blue/30 bg-[#EEF5FF] px-5 py-3 text-xs md:text-sm text-gray-700 font-bold leading-relaxed">
-                  <div>Version: v{APP_VERSION}</div>
-                  <div>更新日: {LAST_UPDATED}</div>
-                  <div>収録アイテム数: {ITEMS.length}</div>
-                </div>
+                <p className="mt-5 md:mt-8 text-[11px] md:text-xs text-gray-400 font-bold">
+                  v{APP_VERSION}・更新日 {LAST_UPDATED}・収録 {ITEMS.length} アイテム
+                </p>
               </motion.div>
             )}
 
@@ -579,8 +582,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <footer className="py-8 text-center text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em] shrink-0 flex flex-col items-center gap-2">
-        <span>&copy; 2026 TIMESTER • タイムスター</span>
+      <footer className="py-4 md:py-8 text-center text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em] shrink-0 flex flex-col items-center gap-2">
+        <span>&copy; 2026 TIMESTER • タイムスター {EDITION_NAME}</span>
         {FEEDBACK_FORM_URL ? (
           <a
             href={FEEDBACK_FORM_URL}
