@@ -7,4 +7,5 @@ export interface Item {
   trivia: string;
 }
 
-export type GameState = 'START' | 'EXPLAIN' | 'PLAYING' | 'REVEALED' | 'FINISHED';
+/** ORIGIN: 試合の最初の1枚（起点カード）。答えを最初から見せる */
+export type GameState = 'START' | 'EXPLAIN' | 'ORIGIN' | 'PLAYING' | 'REVEALED' | 'FINISHED';

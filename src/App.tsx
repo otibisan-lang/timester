@@ -47,7 +47,6 @@ function shuffle<T>(list: T[]): T[] {
 export default function App() {
   const [gameState, setGameState] = useState<GameState>('START');
   const [currentItem, setCurrentItem] = useState<Item | null>(null);
-  const [currentRevealed, setCurrentRevealed] = useState(false);
   // 山札。タイトルに戻っても保持し、「いま n / N」からシャッフルしたときだけ作り直す
   const [deck, setDeck] = useState<Item[]>(() => shuffle(ITEMS));
   const [round, setRound] = useState(0);
@@ -64,27 +63,29 @@ export default function App() {
 
   const drawFrom = useCallback((cards: Item[], index: number) => {
     setCurrentItem(cards[index]);
-    setCurrentRevealed(false);
     setRound(index + 1);
     setGameState('PLAYING');
   }, []);
 
-  /** 試合を始める。山札は前の試合の続きから使う（未回答のまま中断したカードはもう一度出す） */
+  /** 試合の最初の1枚を起点カードとして出す。答えは最初から見せるので、出題履歴にも入れる */
+  const drawOrigin = useCallback((cards: Item[], index: number) => {
+    setCurrentItem(cards[index]);
+    setRound(index + 1);
+    setHistory([cards[index]]);
+    setGameState('ORIGIN');
+  }, []);
+
+  /** 試合を始める。山札は前の試合の続きから使い、最初の1枚は必ず起点カードにする */
   const startGame = useCallback(() => {
-    setHistory([]);
     setShowRules(false);
-    if (currentItem && !currentRevealed) {
-      setGameState('PLAYING');
-      return;
-    }
     if (round >= deck.length) {
       const reshuffled = shuffle(ITEMS);
       setDeck(reshuffled);
-      drawFrom(reshuffled, 0);
+      drawOrigin(reshuffled, 0);
       return;
     }
-    drawFrom(deck, round);
-  }, [currentItem, currentRevealed, round, deck, drawFrom]);
+    drawOrigin(deck, round);
+  }, [round, deck, drawOrigin]);
 
   const nextItem = useCallback(() => {
     if (round >= deck.length) {
@@ -98,9 +99,10 @@ export default function App() {
     if (currentItem && !history.find((c) => c.id === currentItem.id)) {
       setHistory((prev) => [...prev, currentItem]);
     }
-    setCurrentRevealed(true);
     setGameState('REVEALED');
   };
+
+  const isInGame = gameState === 'ORIGIN' || gameState === 'PLAYING' || gameState === 'REVEALED';
 
   const backToTitle = () => {
     setGameState('START');
@@ -112,24 +114,23 @@ export default function App() {
     setDeck(reshuffled);
     setHistory([]);
     setShowShuffleConfirm(false);
-    if (gameState === 'PLAYING' || gameState === 'REVEALED') {
-      drawFrom(reshuffled, 0);
+    if (isInGame) {
+      drawOrigin(reshuffled, 0);
     } else {
       setCurrentItem(null);
-      setCurrentRevealed(false);
       setRound(0);
     }
   };
 
   const onClickHeaderTitle = () => {
-    if (gameState === 'PLAYING' || gameState === 'REVEALED' || gameState === 'FINISHED') {
+    if (isInGame || gameState === 'FINISHED') {
       setShowExitConfirm(true);
       return;
     }
     setGameState('START');
   };
 
-  const showMobilePlayDock = (gameState === 'PLAYING' || gameState === 'REVEALED') && currentItem != null;
+  const showMobilePlayDock = isInGame && currentItem != null;
 
   return (
     <div className="min-h-[100dvh] bg-theme-bg text-gray-800 font-sans selection:bg-yellow-200 flex flex-col">
@@ -249,6 +250,40 @@ export default function App() {
                     <Play className="w-7 h-7 fill-current" />
                   </button>
                 </div>
+              </motion.div>
+            )}
+
+            {gameState === 'ORIGIN' && currentItem && (
+              <motion.div
+                key={`origin-${round}`}
+                initial={{ x: 30, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -30, opacity: 0 }}
+                className="mx-auto w-full max-w-xl bg-white rounded-[40px] border-[8px] border-theme-yellow p-6 md:p-10 shadow-[12px_12px_0_#FFD93D] flex flex-col items-center text-center gap-4 md:gap-6"
+              >
+                <span className="rounded-full bg-theme-yellow px-4 py-1 text-sm md:text-base font-black text-gray-800">
+                  起点カード
+                </span>
+                <p className="text-sm md:text-lg font-bold text-gray-700 leading-relaxed">
+                  プレイヤーは全員、このカードのアイテム名と西暦年を、手元のふせん1枚に書いてください。
+                </p>
+                <div className="w-full rounded-3xl bg-theme-bg px-4 py-6 md:py-8 flex flex-col items-center gap-2">
+                  <p className="text-3xl md:text-5xl font-black leading-tight text-gray-900 break-words">
+                    {currentItem.name}
+                  </p>
+                  <p className="text-6xl md:text-7xl font-black text-theme-coral font-display leading-none">
+                    {currentItem.releaseYear}
+                  </p>
+                </div>
+                <p className="text-[11px] md:text-xs text-gray-500 font-bold leading-relaxed">
+                  このカードが起点となります。次のカードからは、このカードよりも古いか、新しいかを判断してください。
+                </p>
+                <button
+                  onClick={nextItem}
+                  className="max-md:hidden w-full bg-theme-green text-white font-black py-5 rounded-[20px] shadow-[0_6px_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 tracking-widest text-lg"
+                >
+                  書けたら、つぎへ進む →
+                </button>
               </motion.div>
             )}
 
@@ -420,7 +455,7 @@ export default function App() {
                 onClick={nextItem}
                 className="flex w-full items-center justify-center gap-2 rounded-2xl bg-theme-green py-3.5 font-black uppercase tracking-widest text-sm text-white shadow-[0_4px_0_rgba(0,0,0,0.15)] transition-all active:translate-y-0.5 active:shadow-none"
               >
-                つぎへ進む →
+                {gameState === 'ORIGIN' ? '書けたら、つぎへ進む →' : 'つぎへ進む →'}
               </button>
             )}
           </div>

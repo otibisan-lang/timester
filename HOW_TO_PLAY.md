@@ -50,9 +50,9 @@
     <div class="bg-theme-yellow text-gray-800 font-bold w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-sm tabular-nums mt-0.5">1</div>
     <p class="text-sm min-w-0">
       <strong>起点を決める：</strong>まず順番を決めます。じゃんけんをして、勝った人から時計回りに行います。<br />
-      次に、起点となる商品（全員共通）を用意します。司会が赤色の「答えをみる」ボタンを押し、表示された発売年と商品名を全員に伝えます。
+      次に、司会が「ゲームを始める」を押すと、最初の1枚は<strong>起点カード</strong>として、商品名と発売年が表示されます。司会はそれを全員に伝えます。
       各プレイヤーは、<strong>発売年と商品名</strong>を<strong>1枚目のふせん</strong>に書き、自分の前のテーブルに貼ってください。
-      全員が起点のふせんを用意できたら、<strong>ゲーム開始</strong>です。
+      全員が起点のふせんを用意できたら、「つぎへ進む」を押して<strong>ゲーム開始</strong>です。
     </p>
   </div>
   <div class="flex gap-4">
