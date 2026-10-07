@@ -9,6 +9,8 @@
   - レイアウト用のブロックは HTML（既存と同じ Tailwind の class 名）も可
 -->
 
+<img src="howto-header.png" alt="TIMESTER タイムスター 現代アイテム" class="mb-6 w-full" />
+
 ## このゲームの説明
 
 このゲームは「タイムスター」といいます。  

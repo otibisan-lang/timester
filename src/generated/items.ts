@@ -298,7 +298,7 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-43",
-    "name": "体温計",
+    "name": "電子体温計",
     "releaseYear": 1983,
     "maker": "テルモ",
     "trivia": "テルモが病院用予測式電子体温計を発売。家庭用は1984年2月"

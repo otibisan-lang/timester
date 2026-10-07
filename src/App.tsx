@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Play, RotateCcw, Info, Trophy, ArrowRight, Hourglass, Shuffle } from 'lucide-react';
+import { Play, RotateCcw, Info, Trophy, ArrowRight, Hourglass, Shuffle, ExternalLink } from 'lucide-react';
 import { ITEMS } from './generated/items';
 import { Item, GameState } from './types';
 import { HowToPlayBody } from './HowToPlayBody';
@@ -18,6 +18,22 @@ const APP_VERSION = '1.0.0';
 const LAST_UPDATED = '2026-10-07';
 /** シリーズ内でのこの版の名前（ヘッダー・タイトル画面に表示） */
 const EDITION_NAME = '現代アイテム';
+
+/** 「別のバージョンでも遊ぶ？」に並べるリンク（タイムスターの別版が増えたらここに足す） */
+const OTHER_VERSIONS = [
+  {
+    title: 'キャラスター 超有名キャラ版',
+    description: 'だれもが知っているキャラクターのデビュー年を当てよう',
+    url: 'https://otibisan-lang.github.io/charaster-fomous/',
+    color: 'bg-theme-blue',
+  },
+  {
+    title: 'キャラスター 企業キャラ版',
+    description: '会社やお店のキャラクターのデビュー年を当てよう',
+    url: 'https://otibisan-lang.github.io/charaster-corporate/',
+    color: 'bg-theme-green',
+  },
+];
 
 function shuffle<T>(list: T[]): T[] {
   const a = [...list];
@@ -40,6 +56,7 @@ export default function App() {
   const [showExitConfirm, setShowExitConfirm] = useState(false);
   const [showShuffleConfirm, setShowShuffleConfirm] = useState(false);
   const [showCatalog, setShowCatalog] = useState(false);
+  const [showOtherVersions, setShowOtherVersions] = useState(false);
 
   useEffect(() => {
     document.title = `TIMESTER タイムスター ${EDITION_NAME}`;
@@ -203,6 +220,13 @@ export default function App() {
                 <p className="mt-5 md:mt-8 text-[11px] md:text-xs text-gray-400 font-bold">
                   v{APP_VERSION}・更新日 {LAST_UPDATED}・収録 {ITEMS.length} アイテム
                 </p>
+                <button
+                  type="button"
+                  onClick={() => setShowOtherVersions(true)}
+                  className="mt-3 rounded-full border-2 border-gray-200 bg-white px-4 py-1.5 text-xs md:text-sm font-black text-gray-500 hover:border-theme-blue hover:text-theme-blue transition-colors"
+                >
+                  別のバージョンでも遊ぶ？
+                </button>
               </motion.div>
             )}
 
@@ -577,6 +601,57 @@ export default function App() {
                   いいえ
                 </button>
               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Other Versions Modal */}
+      <AnimatePresence>
+        {showOtherVersions && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-yellow p-6 md:p-10 shadow-2xl max-w-md w-full flex flex-col relative"
+            >
+              <button
+                onClick={() => setShowOtherVersions(false)}
+                className="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors text-gray-500 hover:text-gray-800"
+              >
+                <div className="text-xl font-black">×</div>
+              </button>
+              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-1 pr-10">別のバージョンでも遊ぶ？</h2>
+              <p className="text-xs md:text-sm text-gray-500 font-bold mb-5">同じルールで遊べる、ほかのゲームです。</p>
+              <div className="flex flex-col gap-3">
+                {OTHER_VERSIONS.map((v) => (
+                  <a
+                    key={v.url}
+                    href={v.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${v.color} flex items-center gap-3 rounded-[18px] px-5 py-4 text-white shadow-[0_5px_0_rgba(0,0,0,0.12)] hover:brightness-105 active:translate-y-0.5 active:shadow-none transition-all`}
+                  >
+                    <span className="flex-1 min-w-0">
+                      <span className="block font-black text-base md:text-lg">{v.title}</span>
+                      <span className="block text-[11px] md:text-xs font-bold text-white/90">{v.description}</span>
+                    </span>
+                    <ExternalLink className="w-5 h-5 shrink-0 opacity-90" />
+                  </a>
+                ))}
+              </div>
+              <button
+                onClick={() => setShowOtherVersions(false)}
+                className="mt-5 w-full bg-gray-100 text-gray-500 py-3 rounded-[18px] font-black text-base hover:bg-gray-200 transition-colors"
+              >
+                閉じる
+              </button>
             </motion.div>
           </motion.div>
         )}
