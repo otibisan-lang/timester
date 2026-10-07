@@ -11,10 +11,10 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-2",
-    "name": "QRコード決済",
-    "releaseYear": 2016,
-    "maker": "Origami",
-    "trivia": "Origami Payが国内初のQRコード決済サービス"
+    "name": "QRコード",
+    "releaseYear": 1994,
+    "maker": "デンソー（現・デンソーウェーブ）",
+    "trivia": "デンソーが自動車部品の管理用に開発。特許を無料公開したことで世界中に広まった"
   },
   {
     "id": "item-3",
@@ -402,13 +402,6 @@ export const ITEMS: Item[] = [
     "trivia": "任天堂が国産初のトランプ製造に着手。輸入は明治初期～（時期不明瞭）"
   },
   {
-    "id": "item-58",
-    "name": "どうぶつの森",
-    "releaseYear": 2001,
-    "maker": "任天堂",
-    "trivia": "任天堂（NINTENDO64）"
-  },
-  {
     "id": "item-59",
     "name": "ニンテンドーDS",
     "releaseYear": 2004,
@@ -491,13 +484,6 @@ export const ITEMS: Item[] = [
     "releaseYear": 1980,
     "maker": "大塚製薬",
     "trivia": ""
-  },
-  {
-    "id": "item-71",
-    "name": "ポケットモンスター",
-    "releaseYear": 1996,
-    "maker": "任天堂",
-    "trivia": "任天堂「赤・緑」"
   },
   {
     "id": "item-72",
@@ -591,13 +577,6 @@ export const ITEMS: Item[] = [
     "trivia": ""
   },
   {
-    "id": "item-85",
-    "name": "コンビニ",
-    "releaseYear": 1974,
-    "maker": "ヨークセブン（現・セブン-イレブン・ジャパン）",
-    "trivia": "セブン-イレブン豊洲店（1号店）"
-  },
-  {
     "id": "item-86",
     "name": "ドライヤー",
     "releaseYear": 1937,
@@ -675,13 +654,6 @@ export const ITEMS: Item[] = [
     "trivia": "シードが世界初の修正テープを発明・発売"
   },
   {
-    "id": "item-97",
-    "name": "宅急便",
-    "releaseYear": 1976,
-    "maker": "大和運輸（現・ヤマト運輸）",
-    "trivia": "大和運輸（現ヤマト運輸）が発売"
-  },
-  {
     "id": "item-98",
     "name": "洗濯機",
     "releaseYear": 1922,
@@ -708,5 +680,26 @@ export const ITEMS: Item[] = [
     "releaseYear": 2001,
     "maker": "ティファール",
     "trivia": "ティファールが日本で発売"
+  },
+  {
+    "id": "item-102",
+    "name": "使い捨てカメラ",
+    "releaseYear": 1986,
+    "maker": "富士写真フイルム（現・富士フイルム）",
+    "trivia": "「写ルンです」の名前で発売。フィルムを使い切ったら、カメラごとお店に出して現像してもらう"
+  },
+  {
+    "id": "item-103",
+    "name": "プリクラ",
+    "releaseYear": 1995,
+    "maker": "アトラス",
+    "trivia": "「プリント倶楽部」の名前でセガと共同開発。シールを交換するのが大ブームに"
+  },
+  {
+    "id": "item-104",
+    "name": "消せるボールペン",
+    "releaseYear": 2007,
+    "maker": "パイロット",
+    "trivia": "「フリクション」の名前で発売。こすったときの熱でインクが透明になる。日本より先にヨーロッパで発売された"
   }
 ];
