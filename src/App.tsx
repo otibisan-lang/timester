@@ -312,7 +312,7 @@ export default function App() {
                   起点カード
                 </span>
                 <p className="text-sm md:text-lg font-bold text-gray-700 leading-relaxed">
-                  プレイヤーは全員、このカードのアイテム名と西暦年を、手元のふせん1枚に書いてください。
+                  プレイヤーは全員、このカードのアイテム名と西暦年を、手元の紙1枚に書いてください。
                 </p>
                 <div className="w-full rounded-3xl bg-theme-bg px-4 py-6 md:py-8 flex flex-col items-center gap-2">
                   <p className="text-3xl md:text-5xl font-black leading-tight text-gray-900 break-words">
