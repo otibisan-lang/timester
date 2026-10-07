@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Play, RotateCcw, Info, Trophy, ArrowRight, Hourglass, Shuffle, ExternalLink } from 'lucide-react';
+import { Play, RotateCcw, Info, Trophy, ArrowRight, Hourglass, Shuffle, ExternalLink, Lightbulb } from 'lucide-react';
 import { ITEMS } from './generated/items';
 import { Item, GameState } from './types';
 import { HowToPlayBody } from './HowToPlayBody';
@@ -20,6 +20,18 @@ const LAST_UPDATED = '2026-10-07';
 const EDITION_NAME = '現代アイテム';
 
 /** 「別のバージョンでも遊ぶ？」に並べるリンク（タイムスターの別版が増えたらここに足す） */
+const OLDEST_YEAR = Math.min(...ITEMS.map((i) => i.releaseYear));
+const NEWEST_YEAR = Math.max(...ITEMS.map((i) => i.releaseYear));
+
+/** 「ヒント」ウインドウに並べる文（年はリストから自動計算） */
+const HINTS = [
+  `収録アイテムのうち、一番古いものは${OLDEST_YEAR}年、一番新しいものは${NEWEST_YEAR}年だよ。`,
+  '「初めて発売された年」は、「一般家庭に広まった年」より早いよ。',
+  '年上の人に「子どものころに、これあった？」って聞いてみて。',
+  'ゲーム機やおもちゃは、1980年以降が多いよ。',
+  'ほかの人が出したカードもヒントになるかも。',
+];
+
 const OTHER_VERSIONS = [
   {
     title: 'キャラスター 超有名キャラ版',
@@ -50,12 +62,15 @@ export default function App() {
   // 山札。タイトルに戻っても保持し、「いま n / N」からシャッフルしたときだけ作り直す
   const [deck, setDeck] = useState<Item[]>(() => shuffle(ITEMS));
   const [round, setRound] = useState(0);
+  // この試合の起点カードが山札の何枚目か（ここより前には戻れない）
+  const [originRound, setOriginRound] = useState(0);
   const [history, setHistory] = useState<Item[]>([]);
   const [showRules, setShowRules] = useState(false);
   const [showExitConfirm, setShowExitConfirm] = useState(false);
   const [showShuffleConfirm, setShowShuffleConfirm] = useState(false);
   const [showCatalog, setShowCatalog] = useState(false);
   const [showOtherVersions, setShowOtherVersions] = useState(false);
+  const [showHints, setShowHints] = useState(false);
 
   useEffect(() => {
     document.title = `TIMESTER タイムスター ${EDITION_NAME}`;
@@ -72,6 +87,7 @@ export default function App() {
     setCurrentItem(cards[index]);
     setRound(index + 1);
     setHistory([cards[index]]);
+    setOriginRound(index + 1);
     setGameState('ORIGIN');
   }, []);
 
@@ -103,6 +119,23 @@ export default function App() {
   };
 
   const isInGame = gameState === 'ORIGIN' || gameState === 'PLAYING' || gameState === 'REVEALED';
+
+  const canGoBack = gameState === 'REVEALED' || (gameState === 'PLAYING' && round > originRound);
+
+  /** ひとつ前の画面に戻る。答え→同じカードの問題、問題→前のカードの答え（前が起点カードなら起点カード） */
+  const goBack = () => {
+    if (gameState === 'REVEALED' && currentItem) {
+      setHistory((prev) => prev.filter((c) => c.id !== currentItem.id));
+      setGameState('PLAYING');
+      return;
+    }
+    if (gameState === 'PLAYING' && round > originRound) {
+      const prevRound = round - 1;
+      setCurrentItem(deck[prevRound - 1]);
+      setRound(prevRound);
+      setGameState(prevRound === originRound ? 'ORIGIN' : 'REVEALED');
+    }
+  };
 
   const backToTitle = () => {
     setGameState('START');
@@ -166,6 +199,20 @@ export default function App() {
             : 'pb-[max(0.5rem,env(safe-area-inset-bottom,0px))]'
         }`}
       >
+        {isInGame ? (
+          <div className="mb-2 md:mb-4 w-full max-w-xl mx-auto">
+            <button
+              type="button"
+              onClick={goBack}
+              disabled={!canGoBack}
+              className={`rounded-full border-2 border-gray-200 bg-white px-4 py-1.5 text-xs md:text-sm font-black text-gray-500 hover:border-theme-blue hover:text-theme-blue transition-colors ${
+                canGoBack ? '' : 'invisible'
+              }`}
+            >
+              ← ひとつ戻る
+            </button>
+          </div>
+        ) : null}
         <div className="w-full">
           <AnimatePresence mode="wait">
             {gameState === 'START' && (
@@ -434,6 +481,17 @@ export default function App() {
               </span>
               <button
                 type="button"
+                onClick={() => setShowHints(true)}
+                className="flex items-center gap-1 text-theme-blue hover:text-theme-coral transition-colors"
+              >
+                <Lightbulb className="w-3.5 h-3.5" />
+                ヒント
+              </button>
+              <span className="text-gray-300" aria-hidden>
+                |
+              </span>
+              <button
+                type="button"
                 onClick={() => setShowExitConfirm(true)}
                 className="text-gray-500 hover:text-theme-coral transition-colors"
               >
@@ -469,13 +527,22 @@ export default function App() {
             showMobilePlayDock ? 'max-md:hidden' : ''
           }`}
         >
-          <button
-            onClick={() => setShowRules(true)}
-            className="text-sm font-black text-gray-600 hover:text-theme-blue transition-colors flex items-center gap-2 uppercase tracking-widest cursor-pointer bg-white/50 px-6 py-2 rounded-full border-2 border-gray-100"
-          >
-            <Info className="w-4 h-4" />
-            あそびかたを見る
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setShowRules(true)}
+              className="text-sm font-black text-gray-600 hover:text-theme-blue transition-colors flex items-center gap-2 uppercase tracking-widest cursor-pointer bg-white/50 px-6 py-2 rounded-full border-2 border-gray-100"
+            >
+              <Info className="w-4 h-4" />
+              あそびかたを見る
+            </button>
+            <button
+              onClick={() => setShowHints(true)}
+              className="text-sm font-black text-gray-600 hover:text-theme-blue transition-colors flex items-center gap-2 uppercase tracking-widest cursor-pointer bg-white/50 px-6 py-2 rounded-full border-2 border-gray-100"
+            >
+              <Lightbulb className="w-4 h-4" />
+              ヒント
+            </button>
+          </div>
           <button
             onClick={() => setShowExitConfirm(true)}
             className="text-xs font-bold text-gray-400 hover:text-theme-coral transition-colors flex items-center gap-1 uppercase tracking-widest cursor-pointer"
@@ -636,6 +703,52 @@ export default function App() {
                   いいえ
                 </button>
               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Hints Modal */}
+      <AnimatePresence>
+        {showHints && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-yellow p-6 md:p-10 shadow-2xl max-w-md w-full flex flex-col relative"
+            >
+              <button
+                onClick={() => setShowHints(false)}
+                className="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors text-gray-500 hover:text-gray-800"
+              >
+                <div className="text-xl font-black">×</div>
+              </button>
+              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-4 pr-10 flex items-center gap-2">
+                <Lightbulb className="w-6 h-6 text-theme-yellow" />
+                ヒント
+              </h2>
+              <ol className="flex flex-col gap-3">
+                {HINTS.map((hint, i) => (
+                  <li key={hint} className="flex gap-3 text-sm md:text-base text-gray-700 font-bold leading-relaxed">
+                    <span className="bg-theme-yellow text-gray-800 font-black w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-sm">
+                      {i + 1}
+                    </span>
+                    <span className="min-w-0">{hint}</span>
+                  </li>
+                ))}
+              </ol>
+              <button
+                onClick={() => setShowHints(false)}
+                className="mt-6 w-full bg-gray-100 text-gray-500 py-3 rounded-[18px] font-black text-base hover:bg-gray-200 transition-colors"
+              >
+                閉じる
+              </button>
             </motion.div>
           </motion.div>
         )}
