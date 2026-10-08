@@ -1,7 +1,7 @@
 {
   "name": "timester",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "タイムスター：身近な商品の発売年を当ててタイムラインを作るゲーム（キャラスターの姉妹版）",
   "type": "module",
   "scripts": {

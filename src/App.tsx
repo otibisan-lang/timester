@@ -14,8 +14,8 @@ const DEFAULT_FEEDBACK_FORM_URL = 'https://form.run/@otibisan-t4q5Blrt5CTGeCAUpC
 const FEEDBACK_FORM_URL =
   (import.meta.env.VITE_FEEDBACK_FORM_URL as string | undefined)?.trim() || DEFAULT_FEEDBACK_FORM_URL;
 
-const APP_VERSION = '1.0.0';
-const LAST_UPDATED = '2026-10-07';
+const APP_VERSION = '1.1.0';
+const LAST_UPDATED = '2026-10-08';
 /** シリーズ内でのこの版の名前（ヘッダー・タイトル画面に表示） */
 const EDITION_NAME = '現代アイテム';
 
@@ -56,15 +56,77 @@ function shuffle<T>(list: T[]): T[] {
   return a;
 }
 
+
+/** 再読み込みしても続きから遊べるよう、山札と進み具合をこのブラウザに保存する */
+const STORAGE_KEY = 'timester-modern-items-progress-v1';
+
+type SavedProgress = {
+  deckIds: string[];
+  round: number;
+  originRound: number;
+  historyIds: string[];
+  currentId: string | null;
+  gameState: GameState;
+};
+
+const ITEM_BY_ID = new Map(ITEMS.map((item) => [item.id, item]));
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const saved = JSON.parse(raw) as SavedProgress;
+    const deck = saved.deckIds.map((id) => ITEM_BY_ID.get(id));
+    // 収録リストが変わっていたら保存内容は使わない
+    if (deck.length !== ITEMS.length || deck.some((item) => !item)) return null;
+    const history = saved.historyIds.map((id) => ITEM_BY_ID.get(id)).filter((item): item is Item => !!item);
+    const currentItem = saved.currentId ? ITEM_BY_ID.get(saved.currentId) ?? null : null;
+    const gameState: GameState =
+      currentItem || saved.gameState === 'START' || saved.gameState === 'EXPLAIN' || saved.gameState === 'FINISHED'
+        ? saved.gameState
+        : 'START';
+    return {
+      deck: deck as Item[],
+      round: saved.round,
+      originRound: saved.originRound,
+      history,
+      currentItem,
+      gameState,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function saveProgress(progress: SavedProgress) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  } catch {
+    // 保存できない環境（プライベートモード等）では何もしない
+  }
+}
+
 export default function App() {
-  const [gameState, setGameState] = useState<GameState>('START');
-  const [currentItem, setCurrentItem] = useState<Item | null>(null);
-  // 山札。タイトルに戻っても保持し、「いま n / N」からシャッフルしたときだけ作り直す
-  const [deck, setDeck] = useState<Item[]>(() => shuffle(ITEMS));
-  const [round, setRound] = useState(0);
+  const [saved] = useState(loadProgress);
+  const [gameState, setGameState] = useState<GameState>(saved?.gameState ?? 'START');
+  const [currentItem, setCurrentItem] = useState<Item | null>(saved?.currentItem ?? null);
+  // 山札。タイトルに戻っても再読み込みしても保持し、「いま n / N」からシャッフルしたときだけ作り直す
+  const [deck, setDeck] = useState<Item[]>(() => saved?.deck ?? shuffle(ITEMS));
+  const [round, setRound] = useState(saved?.round ?? 0);
   // この試合の起点カードが山札の何枚目か（ここより前には戻れない）
-  const [originRound, setOriginRound] = useState(0);
-  const [history, setHistory] = useState<Item[]>([]);
+  const [originRound, setOriginRound] = useState(saved?.originRound ?? 0);
+  const [history, setHistory] = useState<Item[]>(saved?.history ?? []);
+
+  useEffect(() => {
+    saveProgress({
+      deckIds: deck.map((item) => item.id),
+      round,
+      originRound,
+      historyIds: history.map((item) => item.id),
+      currentId: currentItem?.id ?? null,
+      gameState,
+    });
+  }, [deck, round, originRound, history, currentItem, gameState]);
   const [showRules, setShowRules] = useState(false);
   const [showExitConfirm, setShowExitConfirm] = useState(false);
   const [showShuffleConfirm, setShowShuffleConfirm] = useState(false);
