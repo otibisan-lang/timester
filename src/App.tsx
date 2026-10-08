@@ -221,7 +221,9 @@ export default function App() {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 1.05, opacity: 0 }}
-                className="bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-blue px-5 py-6 md:p-14 shadow-[8px_8px_0_#4D96FF] md:shadow-[12px_12px_0_#4D96FF] flex flex-col items-center text-center max-w-2xl mx-auto"
+                className="mx-auto flex w-full max-w-2xl flex-col items-center"
+              >
+                <div className="w-full bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-blue px-5 py-6 md:p-14 shadow-[8px_8px_0_#4D96FF] md:shadow-[12px_12px_0_#4D96FF] flex flex-col items-center text-center max-w-2xl mx-auto"
               >
                 <div className="w-14 h-14 md:w-24 md:h-24 mb-3 md:mb-6 bg-theme-yellow border-4 border-white rounded-2xl md:rounded-3xl flex items-center justify-center shadow-lg transform -rotate-3 text-gray-800">
                   <Hourglass className="w-7 h-7 md:w-12 md:h-12" />
@@ -268,10 +270,11 @@ export default function App() {
                 <p className="mt-5 md:mt-8 text-[11px] md:text-xs text-gray-400 font-bold">
                   v{APP_VERSION}・更新日 {LAST_UPDATED}・収録 {ITEMS.length} アイテム
                 </p>
+                </div>
                 <button
                   type="button"
                   onClick={() => setShowOtherVersions(true)}
-                  className="mt-3 rounded-full border-2 border-gray-200 bg-white px-4 py-1.5 text-xs md:text-sm font-black text-gray-500 hover:border-theme-blue hover:text-theme-blue transition-colors"
+                  className="mt-4 md:mt-6 text-xs md:text-sm font-bold text-gray-400 underline underline-offset-2 hover:text-theme-blue transition-colors"
                 >
                   別のバージョンでも遊ぶ？
                 </button>
@@ -291,10 +294,10 @@ export default function App() {
                 <div className="mt-10 flex justify-center">
                   <button
                     onClick={startGame}
-                    className="bg-theme-coral text-white px-16 py-5 rounded-[20px] font-black text-2xl shadow-[0_6px_0_#D32F2F] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3 uppercase"
+                    className="bg-theme-coral text-white px-8 md:px-16 py-4 md:py-5 rounded-[20px] font-black text-lg md:text-2xl whitespace-nowrap shadow-[0_6px_0_#D32F2F] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 md:gap-3 uppercase"
                   >
                     ゲームを始める
-                    <Play className="w-7 h-7 fill-current" />
+                    <Play className="w-5 h-5 md:w-7 md:h-7 fill-current" />
                   </button>
                 </div>
               </motion.div>
