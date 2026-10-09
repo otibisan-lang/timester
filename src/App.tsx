@@ -14,8 +14,8 @@ const DEFAULT_FEEDBACK_FORM_URL = 'https://form.run/@otibisan-t4q5Blrt5CTGeCAUpC
 const FEEDBACK_FORM_URL =
   (import.meta.env.VITE_FEEDBACK_FORM_URL as string | undefined)?.trim() || DEFAULT_FEEDBACK_FORM_URL;
 
-const APP_VERSION = '1.1.0';
-const LAST_UPDATED = '2026-10-08';
+const APP_VERSION = '1.2.0';
+const LAST_UPDATED = '2026-10-09';
 /** シリーズ内でのこの版の名前（ヘッダー・タイトル画面に表示） */
 const EDITION_NAME = '現代アイテム';
 
