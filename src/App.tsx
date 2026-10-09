@@ -106,6 +106,18 @@ function saveProgress(progress: SavedProgress) {
   }
 }
 
+/** 商品名の上に、よみがなを小さく出す */
+function ItemName({ item, className }: { item: Item; className: string }) {
+  return (
+    <span className="flex flex-col items-center">
+      {item.yomi ? (
+        <span className="text-xs md:text-sm font-bold text-gray-500 tracking-wider leading-tight">{item.yomi}</span>
+      ) : null}
+      <span className={className}>{item.name}</span>
+    </span>
+  );
+}
+
 export default function App() {
   const [saved] = useState(loadProgress);
   const [gameState, setGameState] = useState<GameState>(saved?.gameState ?? 'START');
@@ -380,9 +392,7 @@ export default function App() {
                   プレイヤーは全員、このカードのアイテム名と西暦年を、手元の紙1枚に書いてください。
                 </p>
                 <div className="w-full rounded-3xl bg-theme-bg px-4 py-6 md:py-8 flex flex-col items-center gap-2">
-                  <p className="text-3xl md:text-5xl font-black leading-tight text-gray-900 break-words">
-                    {currentItem.name}
-                  </p>
+                  <ItemName item={currentItem} className="text-3xl md:text-5xl font-black leading-tight text-gray-900 break-words" />
                   <p className="text-6xl md:text-7xl font-black text-theme-coral font-display leading-none">
                     {currentItem.releaseYear}
                   </p>
@@ -425,9 +435,7 @@ export default function App() {
                         </p>
                       </div>
                       <div className="w-full rounded-3xl bg-theme-bg px-4 py-8 md:py-12 flex flex-col items-center gap-3 md:gap-4">
-                        <p className="text-4xl font-black leading-tight text-gray-900 break-words md:text-6xl">
-                          {currentItem.name}
-                        </p>
+                        <ItemName item={currentItem} className="text-4xl font-black leading-tight text-gray-900 break-words md:text-6xl" />
                         {currentItem.maker ? (
                           <p className="rounded-full bg-[#E1F5FE] px-4 py-1.5 text-sm font-bold text-[#01579B] md:text-base">
                             発売元：{currentItem.maker}
@@ -454,7 +462,7 @@ export default function App() {
                       <div className="text-7xl md:text-8xl font-black text-theme-coral font-display leading-none">
                         {currentItem.releaseYear}
                       </div>
-                      <h3 className="text-3xl md:text-4xl font-black text-[#1A5F7A] break-words">{currentItem.name}</h3>
+                      <h3><ItemName item={currentItem} className="text-3xl md:text-4xl font-black text-[#1A5F7A] break-words" /></h3>
                       {currentItem.maker ? (
                         <p className="-mt-2 text-sm font-bold text-[#01579B]">発売元：{currentItem.maker}</p>
                       ) : null}

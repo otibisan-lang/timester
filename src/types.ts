@@ -1,6 +1,8 @@
 export interface Item {
   id: string;
   name: string;
+  /** よみがな（ひらがな）。名前に漢字や英字があるときだけ入る */
+  yomi: string;
   releaseYear: number;
   /** 発売元。空なら表示しない */
   maker: string;

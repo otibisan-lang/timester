@@ -2,7 +2,8 @@
  * items_master.csv を正として src/generated/items.ts を生成する。
  * 実行: timester フォルダで npm run sync:items（npm run build でも自動で走る）
  *
- * CSV の列: no, name, releaseYear, maker, trivia, status
+ * CSV の列: no, name, releaseYear, maker, trivia, status, yomi
+ * - yomi（よみがな・ひらがな）は、名前に漢字や英字があるときだけ商品名の上に小さく表示する。
  * - maker（発売元）は出題時に商品名と一緒に表示する。空欄なら表示しない。
  * - status が「確定」で始まる行だけ出題に使う（「確定（国産初）」なども含む）。
  * - trivia は答え画面の「豆知識」に表示される。全角 160 字以内が目安。
@@ -59,7 +60,7 @@ function parseCsv(text) {
 function main() {
   const rows = parseCsv(fs.readFileSync(CSV_PATH, "utf8").replace(/^﻿/, ""));
   const header = rows[0].map((h) => h.trim());
-  for (const col of ["no", "name", "releaseYear", "maker", "trivia", "status"]) {
+  for (const col of ["no", "name", "releaseYear", "maker", "trivia", "status", "yomi"]) {
     if (!header.includes(col)) throw new Error(`CSV に列がありません: ${col}`);
   }
 
@@ -81,7 +82,9 @@ function main() {
     }
     // 備考が発売元と同じ（例: 「任天堂」だけ）なら、豆知識としては出さない
     const trivia = o.trivia === o.maker ? "" : o.trivia;
-    items.push({ id: `item-${o.no}`, name: o.name, releaseYear: year, maker: o.maker, trivia });
+    // ひらがな・カタカナだけの名前には、よみがなを付けない（小1でも読めるため）
+    const needsYomi = /[^\u3040-\u30ff\uff08\uff09()\s]/.test(o.name);
+    items.push({ id: `item-${o.no}`, name: o.name, yomi: needsYomi ? o.yomi : "", releaseYear: year, maker: o.maker, trivia });
   }
 
   const src =
