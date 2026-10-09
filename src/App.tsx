@@ -9,13 +9,16 @@ import { Play, RotateCcw, Info, Trophy, ArrowRight, Hourglass, Shuffle, External
 import { ITEMS } from './generated/items';
 import { Item, GameState } from './types';
 import { HowToPlayBody } from './HowToPlayBody';
+import { CHANGELOG } from './changelog';
+
+// バージョンと更新日は、更新履歴（changelog.ts）の一番上から取る
+const APP_VERSION = CHANGELOG[0].version;
+const LAST_UPDATED = CHANGELOG[0].date;
 
 const DEFAULT_FEEDBACK_FORM_URL = 'https://form.run/@otibisan-t4q5Blrt5CTGeCAUpCDJ';
 const FEEDBACK_FORM_URL =
   (import.meta.env.VITE_FEEDBACK_FORM_URL as string | undefined)?.trim() || DEFAULT_FEEDBACK_FORM_URL;
 
-const APP_VERSION = '1.2.0';
-const LAST_UPDATED = '2026-10-09';
 /** シリーズ内でのこの版の名前（ヘッダー・タイトル画面に表示） */
 const EDITION_NAME = '現代アイテム';
 
@@ -145,6 +148,7 @@ export default function App() {
   const [showCatalog, setShowCatalog] = useState(false);
   const [showOtherVersions, setShowOtherVersions] = useState(false);
   const [showHints, setShowHints] = useState(false);
+  const [showChangelog, setShowChangelog] = useState(false);
 
   useEffect(() => {
     document.title = `TIMESTER タイムスター ${EDITION_NAME}`;
@@ -345,13 +349,25 @@ export default function App() {
                   v{APP_VERSION}・更新日 {LAST_UPDATED}・収録 {ITEMS.length} アイテム
                 </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setShowOtherVersions(true)}
-                  className="mt-4 md:mt-6 text-xs md:text-sm font-bold text-gray-400 underline underline-offset-2 hover:text-theme-blue transition-colors"
-                >
-                  別のバージョンでも遊ぶ？
-                </button>
+                <div className="mt-4 md:mt-6 flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setShowOtherVersions(true)}
+                    className="text-xs md:text-sm font-bold text-gray-400 underline underline-offset-2 hover:text-theme-blue transition-colors"
+                  >
+                    別のバージョンでも遊ぶ？
+                  </button>
+                  <span className="text-gray-300 text-xs" aria-hidden>
+                    |
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setShowChangelog(true)}
+                    className="text-xs md:text-sm font-bold text-gray-400 underline underline-offset-2 hover:text-theme-blue transition-colors"
+                  >
+                    更新履歴
+                  </button>
+                </div>
               </motion.div>
             )}
 
@@ -819,6 +835,54 @@ export default function App() {
               <button
                 onClick={() => setShowHints(false)}
                 className="mt-6 w-full bg-gray-100 text-gray-500 py-3 rounded-[18px] font-black text-base hover:bg-gray-200 transition-colors"
+              >
+                閉じる
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Changelog Modal */}
+      <AnimatePresence>
+        {showChangelog && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-blue p-6 md:p-10 shadow-2xl max-w-md w-full max-h-[85vh] flex flex-col relative"
+            >
+              <button
+                onClick={() => setShowChangelog(false)}
+                className="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors text-gray-500 hover:text-gray-800"
+              >
+                <div className="text-xl font-black">×</div>
+              </button>
+              <h2 className="text-xl md:text-2xl font-black text-gray-900 mb-4 pr-10">更新履歴</h2>
+              <div className="overflow-y-auto custom-scrollbar flex-1 flex flex-col gap-4 pr-1">
+                {CHANGELOG.map((entry) => (
+                  <section key={entry.version}>
+                    <p className="flex items-baseline gap-2 mb-1.5">
+                      <span className="rounded-full bg-theme-blue px-2.5 py-0.5 text-xs font-black text-white">v{entry.version}</span>
+                      <span className="text-xs font-bold text-gray-400">{entry.date}</span>
+                    </p>
+                    <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700 leading-relaxed marker:text-gray-300">
+                      {entry.changes.map((c) => (
+                        <li key={c}>{c}</li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+              <button
+                onClick={() => setShowChangelog(false)}
+                className="mt-5 w-full bg-gray-100 text-gray-500 py-3 rounded-[18px] font-black text-base hover:bg-gray-200 transition-colors"
               >
                 閉じる
               </button>
