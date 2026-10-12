@@ -239,7 +239,7 @@ export const ITEMS: Item[] = [
     "name": "ジェルネイル",
     "yomi": "",
     "releaseYear": 2000,
-    "maker": "",
+    "maker": "(南アフリカから上陸)",
     "trivia": "南アフリカ発の「ジェル」素材が日本に上陸"
   },
   {

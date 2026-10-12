@@ -10,6 +10,11 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.3.3',
+    date: '2026-10-12',
+    changes: ['発売元の表記を見直しました（1つ）。'],
+  },
+  {
     version: '1.3.2',
     date: '2026-10-12',
     changes: ['アイテム名や説明の表記を見直しました。'],
