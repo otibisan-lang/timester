@@ -134,7 +134,7 @@ def poster():
 
     # ふせんのタイムライン（線＋薄い色。「？」だけ太い枠で目立たせる）
     notes = [
-        ("1915", "電気アイロン", YELLOW, YELLOW_T),
+        ("1914", "電気アイロン", YELLOW, YELLOW_T),
         ("1971", "カップヌードル", CORAL, CORAL_T),
         ("？", "", CORAL, WHITE),
         ("1996", "たまごっち", BLUE, BLUE_T),
