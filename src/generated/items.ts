@@ -8,30 +8,30 @@ export const ITEMS: Item[] = [
     "yomi": "あいえいちちょうりき",
     "releaseYear": 1974,
     "maker": "三菱電機",
-    "trivia": "三菱電機（商用周波数式）。同年8月に松下電器（高周波式）"
+    "trivia": "三菱電機(商用周波数式)。同年8月に松下電器(高周波式)"
   },
   {
     "id": "item-4",
     "name": "iPhone",
     "yomi": "あいふぉーん",
     "releaseYear": 2008,
-    "maker": "Apple",
-    "trivia": "日本初上陸はiPhone 3G（初代iPhoneは日本未発売）"
+    "maker": "Apple(アメリカ)",
+    "trivia": "日本初上陸はiPhone 3G(初代iPhoneは日本未発売)"
   },
   {
     "id": "item-5",
     "name": "電気アイロン",
     "yomi": "でんきあいろん",
     "releaseYear": 1915,
-    "maker": "芝浦製作所（現・東芝）",
-    "trivia": "芝浦製作所（国産第1号）。輸入は1914年"
+    "maker": "芝浦製作所(現・東芝)",
+    "trivia": "芝浦製作所(国産第1号)。輸入は1914年"
   },
   {
     "id": "item-6",
     "name": "アイロンビーズ",
     "yomi": "",
     "releaseYear": 1995,
-    "maker": "カワダ",
+    "maker": "カワダ(アメリカから輸入)",
     "trivia": "カワダがアメリカ製パーラービーズを国内販売開始"
   },
   {
@@ -39,8 +39,8 @@ export const ITEMS: Item[] = [
     "name": "Apple Watch",
     "yomi": "あっぷるうぉっち",
     "releaseYear": 2015,
-    "maker": "Apple",
-    "trivia": ""
+    "maker": "Apple(アメリカ)",
+    "trivia": "Apple"
   },
   {
     "id": "item-9",
@@ -55,7 +55,7 @@ export const ITEMS: Item[] = [
     "name": "ウォシュレット",
     "yomi": "",
     "releaseYear": 1980,
-    "maker": "東洋陶器（現・TOTO）",
+    "maker": "東洋陶器(現・TOTO)",
     "trivia": "TOTO"
   },
   {
@@ -63,8 +63,8 @@ export const ITEMS: Item[] = [
     "name": "UNO",
     "yomi": "うの",
     "releaseYear": 1979,
-    "maker": "トミー（現・タカラトミー）",
-    "trivia": "トミー（現タカラトミー）が日本語版を発売"
+    "maker": "トミー(現・タカラトミー)",
+    "trivia": "トミー(現タカラトミー)が日本語版を発売"
   },
   {
     "id": "item-12",
@@ -87,7 +87,7 @@ export const ITEMS: Item[] = [
     "name": "オセロ",
     "yomi": "",
     "releaseYear": 1973,
-    "maker": "ツクダ（現・メガハウス）",
+    "maker": "ツクダ(現・メガハウス)",
     "trivia": "ツクダから発売"
   },
   {
@@ -103,16 +103,16 @@ export const ITEMS: Item[] = [
     "name": "カッターナイフ",
     "yomi": "",
     "releaseYear": 1959,
-    "maker": "日本転写紙（現・オルファ）",
-    "trivia": "岡田良男が考案（1956年）、日本転写紙が商品化（1959年）"
+    "maker": "日本転写紙(現・オルファ)",
+    "trivia": "岡田良男が考案(1956年)、日本転写紙が商品化(1959年)"
   },
   {
     "id": "item-17",
-    "name": "カップラーメン",
+    "name": "カップヌードル",
     "yomi": "",
     "releaseYear": 1971,
     "maker": "日清食品",
-    "trivia": "日清食品「カップヌードル」（世界初）"
+    "trivia": "世界初のカップめん。容器がそのまま器になり、お湯を注ぐだけで食べられる"
   },
   {
     "id": "item-18",
@@ -128,14 +128,14 @@ export const ITEMS: Item[] = [
     "yomi": "かみこっぷ",
     "releaseYear": 1930,
     "maker": "東洋製罐",
-    "trivia": "東洋製罐がアイスクリーム用紙コップの原形を開発（国産初）"
+    "trivia": "東洋製罐がアイスクリーム用紙コップの原形を開発(国産初)"
   },
   {
     "id": "item-20",
     "name": "ガチャガチャ",
     "yomi": "",
     "releaseYear": 1965,
-    "maker": "ペニイ商会",
+    "maker": "ペニイ商会(アメリカから輸入)",
     "trivia": "ペニイ商会がアメリカから輸入"
   },
   {
@@ -151,15 +151,15 @@ export const ITEMS: Item[] = [
     "name": "空気清浄機",
     "yomi": "くうきせいじょうき",
     "releaseYear": 1962,
-    "maker": "松下電器（現・パナソニック）",
+    "maker": "松下電器(現・パナソニック)",
     "trivia": "松下電器産業が国内初のフィルター式家庭用空気清浄機を発売"
   },
   {
     "id": "item-23",
-    "name": "クロックス",
+    "name": "クロックス(サンダル)",
     "yomi": "",
     "releaseYear": 2005,
-    "maker": "クロックス・ジャパン",
+    "maker": "クロックス(アメリカ)",
     "trivia": "クロックス・ジャパンが日本市場に上陸"
   },
   {
@@ -167,15 +167,15 @@ export const ITEMS: Item[] = [
     "name": "黒ひげ危機一発",
     "yomi": "くろひげききいっぱつ",
     "releaseYear": 1975,
-    "maker": "タカラ（現・タカラトミー）",
-    "trivia": "タカラ（現タカラトミー）"
+    "maker": "タカラ(現・タカラトミー)",
+    "trivia": "タカラ(現タカラトミー)"
   },
   {
     "id": "item-25",
     "name": "蛍光灯",
     "yomi": "けいこうとう",
     "releaseYear": 1951,
-    "maker": "松下電器（現・パナソニック）",
+    "maker": "松下電器(現・パナソニック)",
     "trivia": "松下電器「ナショナル蛍光灯」"
   },
   {
@@ -183,8 +183,8 @@ export const ITEMS: Item[] = [
     "name": "プラスチック消しゴム",
     "yomi": "ぷらすちっくけしごむ",
     "releaseYear": 1959,
-    "maker": "シードゴム工業（現・シード）",
-    "trivia": "シードゴム工業（現シード）が世界初のプラスチック消しゴムを発売"
+    "maker": "シードゴム工業(現・シード)",
+    "trivia": "シードゴム工業(現シード)が世界初のプラスチック消しゴムを発売"
   },
   {
     "id": "item-27",
@@ -199,7 +199,7 @@ export const ITEMS: Item[] = [
     "name": "電気こたつ",
     "yomi": "でんきこたつ",
     "releaseYear": 1929,
-    "maker": "松下電器（現・パナソニック）",
+    "maker": "松下電器(現・パナソニック)",
     "trivia": "松下電器が電気こたつを発売"
   },
   {
@@ -207,8 +207,8 @@ export const ITEMS: Item[] = [
     "name": "シャーペン",
     "yomi": "",
     "releaseYear": 1915,
-    "maker": "早川兄弟商会（現・シャープ）",
-    "trivia": "早川徳次「早川式繰出鉛筆」（国産初）。輸入品は1870年代後半から"
+    "maker": "早川兄弟商会(現・シャープ)",
+    "trivia": "早川徳次「早川式繰出鉛筆」(国産初)。輸入品は1870年代後半から"
   },
   {
     "id": "item-30",
@@ -216,15 +216,15 @@ export const ITEMS: Item[] = [
     "yomi": "しゅうかんしょうねんじゃんぷ",
     "releaseYear": 1968,
     "maker": "集英社",
-    "trivia": "創刊（当初は月2回刊）"
+    "trivia": "創刊(当初は月2回刊)"
   },
   {
     "id": "item-31",
-    "name": "食洗機",
-    "yomi": "しょくせんき",
+    "name": "食器洗い機",
+    "yomi": "しょっきあらいき",
     "releaseYear": 1960,
-    "maker": "松下電器（現・パナソニック）",
-    "trivia": "パナソニック（当時松下電器）MR-500"
+    "maker": "松下電器(現・パナソニック)",
+    "trivia": "パナソニック(当時松下電器)MR-500"
   },
   {
     "id": "item-32",
@@ -247,8 +247,8 @@ export const ITEMS: Item[] = [
     "name": "ジェンガ",
     "yomi": "",
     "releaseYear": 1988,
-    "maker": "タカラ（現・タカラトミー）",
-    "trivia": "タカラ（本国イギリス発売は1983年）"
+    "maker": "タカラ(現・タカラトミー)",
+    "trivia": "タカラ(本国イギリス発売は1983年)"
   },
   {
     "id": "item-35",
@@ -256,11 +256,11 @@ export const ITEMS: Item[] = [
     "yomi": "",
     "releaseYear": 1991,
     "maker": "ライオン",
-    "trivia": "日本でZiplocブランドとして初めて発売（当初はライオンが販売）"
+    "trivia": "日本でZiplocブランドとして初めて発売(当初はライオンが販売)"
   },
   {
     "id": "item-36",
-    "name": "SUICA",
+    "name": "Suica",
     "yomi": "すいか",
     "releaseYear": 2001,
     "maker": "JR東日本",
@@ -287,7 +287,7 @@ export const ITEMS: Item[] = [
     "name": "ストライダー",
     "yomi": "",
     "releaseYear": 2009,
-    "maker": "ストライダージャパン",
+    "maker": "ストライダー(アメリカ)",
     "trivia": "ストライダージャパンが販売開始"
   },
   {
@@ -295,7 +295,7 @@ export const ITEMS: Item[] = [
     "name": "セロハンテープ",
     "yomi": "",
     "releaseYear": 1948,
-    "maker": "日絆薬品工業（現・ニチバン）",
+    "maker": "日絆薬品工業(現・ニチバン)",
     "trivia": "ニチバン「セロテープ」"
   },
   {
@@ -303,15 +303,15 @@ export const ITEMS: Item[] = [
     "name": "扇風機",
     "yomi": "せんぷうき",
     "releaseYear": 1894,
-    "maker": "芝浦製作所（現・東芝）",
-    "trivia": "芝浦製作所（国産第1号）。輸入は1893年"
+    "maker": "芝浦製作所(現・東芝)",
+    "trivia": "芝浦製作所(国産第1号)。輸入は1893年"
   },
   {
     "id": "item-42",
     "name": "掃除機",
     "yomi": "そうじき",
     "releaseYear": 1931,
-    "maker": "芝浦製作所（現・東芝）",
+    "maker": "芝浦製作所(現・東芝)",
     "trivia": "芝浦製作所「VC-A型」"
   },
   {
@@ -335,8 +335,8 @@ export const ITEMS: Item[] = [
     "name": "ダイソンの掃除機",
     "yomi": "だいそんのそうじき",
     "releaseYear": 1986,
-    "maker": "ダイソン",
-    "trivia": "「G-Force」が日本先行発売（日本法人設立は1998年）"
+    "maker": "ダイソン(イギリス)",
+    "trivia": "「G-Force」が日本先行発売(日本法人設立は1998年)"
   },
   {
     "id": "item-46",
@@ -344,7 +344,7 @@ export const ITEMS: Item[] = [
     "yomi": "",
     "releaseYear": 1927,
     "maker": "日本開閉器工場",
-    "trivia": "広島県尾道の日本開閉器工場が「チャック印」の財布で製造・販売開始（国産初）。輸入は1917年"
+    "trivia": "広島県尾道の日本開閉器工場が「チャック印」の財布で製造・販売開始(国産初)。輸入は1917年"
   },
   {
     "id": "item-47",
@@ -359,16 +359,16 @@ export const ITEMS: Item[] = [
     "name": "テレビ(カラー)",
     "yomi": "",
     "releaseYear": 1960,
-    "maker": "東京芝浦電気（現・東芝）",
+    "maker": "東京芝浦電気(現・東芝)",
     "trivia": "東芝「D-WE」、本放送開始と同時"
   },
   {
     "id": "item-49",
     "name": "テレビ(白黒)",
-    "yomi": "てれび（しろくろ）",
+    "yomi": "てれび(しろくろ)",
     "releaseYear": 1953,
-    "maker": "早川電機工業（現・シャープ）",
-    "trivia": "シャープ（当時早川電機工業）「TV3-14T」"
+    "maker": "早川電機工業(現・シャープ)",
+    "trivia": "シャープ(当時早川電機工業)「TV3-14T」"
   },
   {
     "id": "item-50",
@@ -376,15 +376,15 @@ export const ITEMS: Item[] = [
     "yomi": "",
     "releaseYear": 1995,
     "maker": "カシオ計算機",
-    "trivia": "カシオ計算機「QV-10」（背面液晶を世界初搭載、コンシューマー機の先駆け）"
+    "trivia": "カシオ計算機「QV-10」(背面液晶を世界初搭載、コンシューマー機の先駆け)"
   },
   {
     "id": "item-51",
     "name": "電気シェーバー",
     "yomi": "でんきしぇーばー",
     "releaseYear": 1955,
-    "maker": "松下電工（現・パナソニック）",
-    "trivia": "松下電工「MS10」（国産初）"
+    "maker": "松下電工(現・パナソニック)",
+    "trivia": "松下電工「MS10」(国産初)"
   },
   {
     "id": "item-52",
@@ -400,7 +400,7 @@ export const ITEMS: Item[] = [
     "yomi": "でんどうあしすとじてんしゃ",
     "releaseYear": 1993,
     "maker": "ヤマハ発動機",
-    "trivia": "ヤマハ発動機「PAS」（世界初）"
+    "trivia": "ヤマハ発動機「PAS」(世界初)"
   },
   {
     "id": "item-54",
@@ -423,7 +423,7 @@ export const ITEMS: Item[] = [
     "name": "トミカ",
     "yomi": "",
     "releaseYear": 1970,
-    "maker": "トミー（現・タカラトミー）",
+    "maker": "トミー(現・タカラトミー)",
     "trivia": "トミー"
   },
   {
@@ -432,7 +432,7 @@ export const ITEMS: Item[] = [
     "yomi": "",
     "releaseYear": 1902,
     "maker": "任天堂",
-    "trivia": "任天堂が国産初のトランプ製造に着手。輸入は明治初期～（時期不明瞭）"
+    "trivia": "任天堂が国産初のトランプ製造に着手。輸入は明治初期～(時期不明瞭)"
   },
   {
     "id": "item-59",
@@ -444,10 +444,10 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-60",
-    "name": "バンドエイド",
-    "yomi": "",
+    "name": "バンドエイド(絆創膏)",
+    "yomi": "ばんどえいど(ばんそうこう)",
     "releaseYear": 1959,
-    "maker": "ジョンソン・エンド・ジョンソン",
+    "maker": "ジョンソン・エンド・ジョンソン(アメリカ)",
     "trivia": "ジョンソン・エンド・ジョンソンが日本市場に紹介"
   },
   {
@@ -455,16 +455,16 @@ export const ITEMS: Item[] = [
     "name": "パソコン",
     "yomi": "",
     "releaseYear": 1976,
-    "maker": "NEC（日本電気）",
-    "trivia": "NEC「TK-80」（国内初期マイコン）。完成品パソコンはPC-8001（1979年）"
+    "maker": "NEC(日本電気)",
+    "trivia": "NEC「TK-80」(国内初期マイコン)。完成品パソコンはPC-8001(1979年)"
   },
   {
     "id": "item-62",
     "name": "ファービー",
     "yomi": "",
     "releaseYear": 1999,
-    "maker": "トミー（現・タカラトミー）",
-    "trivia": "トミー（本国米国は1998年）"
+    "maker": "トミー(現・タカラトミー)",
+    "trivia": "トミー(本国米国は1998年)"
   },
   {
     "id": "item-63",
@@ -487,7 +487,7 @@ export const ITEMS: Item[] = [
     "name": "プラレール",
     "yomi": "",
     "releaseYear": 1959,
-    "maker": "トミー（現・タカラトミー）",
+    "maker": "トミー(現・タカラトミー)",
     "trivia": "トミー「プラスチック汽車・レールセット」"
   },
   {
@@ -495,7 +495,7 @@ export const ITEMS: Item[] = [
     "name": "ベイブレード",
     "yomi": "",
     "releaseYear": 1999,
-    "maker": "タカラ（現・タカラトミー）",
+    "maker": "タカラ(現・タカラトミー)",
     "trivia": "タカラ"
   },
   {
@@ -503,7 +503,7 @@ export const ITEMS: Item[] = [
     "name": "ホームベーカリー",
     "yomi": "",
     "releaseYear": 1987,
-    "maker": "松下電器（現・パナソニック）",
+    "maker": "松下電器(現・パナソニック)",
     "trivia": "松下電器産業「SD-BT2」"
   },
   {
@@ -511,8 +511,8 @@ export const ITEMS: Item[] = [
     "name": "ホッチキス",
     "yomi": "",
     "releaseYear": 1903,
-    "maker": "伊藤喜商店（現・イトーキ）",
-    "trivia": "伊藤喜商店（現イトーキ）が輸入"
+    "maker": "伊藤喜商店(現・イトーキ)(アメリカから輸入)",
+    "trivia": "伊藤喜商店(現イトーキ)が輸入"
   },
   {
     "id": "item-69",
@@ -552,14 +552,14 @@ export const ITEMS: Item[] = [
     "yomi": "まほうびん",
     "releaseYear": 1907,
     "maker": "",
-    "trivia": "日本に初めて輸入。国産化は1912年（八木亭二郎）"
+    "trivia": "日本に初めて輸入。国産化は1912年(八木亭二郎)"
   },
   {
     "id": "item-75",
     "name": "ミニ四駆",
     "yomi": "みによんく",
     "releaseYear": 1982,
-    "maker": "田宮模型（現・タミヤ）",
+    "maker": "田宮模型(現・タミヤ)",
     "trivia": "タミヤ"
   },
   {
@@ -568,14 +568,14 @@ export const ITEMS: Item[] = [
     "yomi": "",
     "releaseYear": 1926,
     "maker": "池田模範堂",
-    "trivia": "池田模範堂（当初は缶入りワセリン軟膏）"
+    "trivia": "池田模範堂(当初は缶入りワセリン軟膏)"
   },
   {
     "id": "item-77",
     "name": "ヤクルト",
     "yomi": "",
     "releaseYear": 1935,
-    "maker": "代田保護菌研究所（現・ヤクルト本社）",
+    "maker": "代田保護菌研究所(現・ヤクルト本社)",
     "trivia": "代田稔博士が福岡市で発売"
   },
   {
@@ -592,22 +592,22 @@ export const ITEMS: Item[] = [
     "yomi": "",
     "releaseYear": 1925,
     "maker": "",
-    "trivia": "日本初のラジオ本放送（受信機もこの頃発売）"
+    "trivia": "日本初のラジオ本放送(受信機もこの頃発売)"
   },
   {
     "id": "item-80",
     "name": "クレラップ",
     "yomi": "",
     "releaseYear": 1960,
-    "maker": "呉羽化学工業（現・クレハ）",
-    "trivia": "呉羽化学工業（現クレハ）。日本最初の家庭用ラップ。同年、旭化成のサランラップがやや遅れて発売"
+    "maker": "呉羽化学工業(現・クレハ)",
+    "trivia": "呉羽化学工業(現クレハ)が発売した、日本で最初の家庭用ラップ"
   },
   {
     "id": "item-81",
     "name": "リカちゃん人形",
     "yomi": "りかちゃんにんぎょう",
     "releaseYear": 1967,
-    "maker": "タカラ（現・タカラトミー）",
+    "maker": "タカラ(現・タカラトミー)",
     "trivia": "タカラ"
   },
   {
@@ -615,16 +615,16 @@ export const ITEMS: Item[] = [
     "name": "電気冷蔵庫",
     "yomi": "でんきれいぞうこ",
     "releaseYear": 1930,
-    "maker": "芝浦製作所（現・東芝）",
-    "trivia": "芝浦製作所（国産第1号）。輸入品は1923年頃との説あり"
+    "maker": "芝浦製作所(現・東芝)",
+    "trivia": "芝浦製作所(国産第1号)。輸入品は1923年頃との説あり"
   },
   {
     "id": "item-83",
     "name": "エアコン",
     "yomi": "",
     "releaseYear": 1935,
-    "maker": "芝浦製作所（現・東芝）",
-    "trivia": "国産第1号「空気調整機」（業務用）。家庭用ウインド形は1953年（東芝）"
+    "maker": "芝浦製作所(現・東芝)",
+    "trivia": "国産第1号「空気調整機」(業務用)。家庭用ウインド形は1953年(東芝)"
   },
   {
     "id": "item-84",
@@ -639,7 +639,7 @@ export const ITEMS: Item[] = [
     "name": "ヘアドライヤー",
     "yomi": "",
     "releaseYear": 1937,
-    "maker": "松下電器（現・パナソニック）",
+    "maker": "松下電器(現・パナソニック)",
     "trivia": "松下電器「ホームドライヤー」"
   },
   {
@@ -647,7 +647,7 @@ export const ITEMS: Item[] = [
     "name": "プレイステーション",
     "yomi": "",
     "releaseYear": 1994,
-    "maker": "ソニー・コンピュータエンタテインメント（現・ソニー・インタラクティブエンタテインメント）",
+    "maker": "ソニー・コンピュータエンタテインメント(現・ソニー・インタラクティブエンタテインメント)",
     "trivia": "ソニー・コンピュータエンタテインメント"
   },
   {
@@ -656,22 +656,22 @@ export const ITEMS: Item[] = [
     "yomi": "",
     "releaseYear": 1948,
     "maker": "セーラー万年筆",
-    "trivia": "セーラー万年筆「セーラー・ボール・ポイント・ペン」（国産初）"
+    "trivia": "セーラー万年筆「セーラー・ボール・ポイント・ペン」(国産初)"
   },
   {
     "id": "item-89",
     "name": "ポストイット",
     "yomi": "",
     "releaseYear": 1981,
-    "maker": "住友スリーエム（現・スリーエム ジャパン）",
-    "trivia": "スリーエムが日本で発売開始（米国発売は1980年）"
+    "maker": "スリーエム(アメリカ)",
+    "trivia": "スリーエムが日本で発売開始(米国発売は1980年)"
   },
   {
     "id": "item-90",
     "name": "ルービックキューブ",
     "yomi": "",
     "releaseYear": 1980,
-    "maker": "ツクダオリジナル（現・メガハウス）",
+    "maker": "ツクダオリジナル(現・メガハウス)",
     "trivia": "ツクダオリジナルが発売"
   },
   {
@@ -679,7 +679,7 @@ export const ITEMS: Item[] = [
     "name": "ルンバ",
     "yomi": "",
     "releaseYear": 2004,
-    "maker": "セールス・オンデマンド",
+    "maker": "セールス・オンデマンド(アメリカから輸入)",
     "trivia": "セールス・オンデマンドが日本で発売開始"
   },
   {
@@ -687,7 +687,7 @@ export const ITEMS: Item[] = [
     "name": "レゴ",
     "yomi": "",
     "releaseYear": 1962,
-    "maker": "",
+    "maker": "レゴ(デンマーク)",
     "trivia": "日本での販売開始"
   },
   {
@@ -703,7 +703,7 @@ export const ITEMS: Item[] = [
     "name": "人生ゲーム",
     "yomi": "じんせいげーむ",
     "releaseYear": 1968,
-    "maker": "タカラ（現・タカラトミー）",
+    "maker": "タカラ(現・タカラトミー)",
     "trivia": "タカラ"
   },
   {
@@ -711,7 +711,7 @@ export const ITEMS: Item[] = [
     "name": "修正液",
     "yomi": "しゅうせいえき",
     "releaseYear": 1952,
-    "maker": "",
+    "maker": "丸善(アメリカから輸入)",
     "trivia": "「リキッドペーパー」が丸善により日本に輸入"
   },
   {
@@ -727,15 +727,15 @@ export const ITEMS: Item[] = [
     "name": "電気洗濯機",
     "yomi": "でんきせんたくき",
     "releaseYear": 1922,
-    "maker": "",
-    "trivia": "米国製「Gainaday」が初輸入。国産初は1930年（芝浦製作所）"
+    "maker": "ゲイナデイ(アメリカ)",
+    "trivia": "米国製「Gainaday」が初輸入。国産初は1930年(芝浦製作所)"
   },
   {
     "id": "item-99",
     "name": "電気炊飯器",
     "yomi": "でんきすいはんき",
     "releaseYear": 1955,
-    "maker": "東京芝浦電気（現・東芝）",
+    "maker": "東京芝浦電気(現・東芝)",
     "trivia": "東芝「ER-4」"
   },
   {
@@ -743,15 +743,15 @@ export const ITEMS: Item[] = [
     "name": "電卓",
     "yomi": "でんたく",
     "releaseYear": 1964,
-    "maker": "早川電機工業（現・シャープ）",
-    "trivia": "シャープ（当時早川電機工業）「CS-10A」"
+    "maker": "早川電機工業(現・シャープ)",
+    "trivia": "シャープ(当時早川電機工業)「CS-10A」"
   },
   {
     "id": "item-101",
     "name": "電気ケトル",
     "yomi": "でんきけとる",
     "releaseYear": 2001,
-    "maker": "ティファール",
+    "maker": "ティファール(フランス)",
     "trivia": "ティファールが日本で発売"
   },
   {
@@ -759,7 +759,7 @@ export const ITEMS: Item[] = [
     "name": "使い捨てカメラ",
     "yomi": "つかいすてかめら",
     "releaseYear": 1986,
-    "maker": "富士写真フイルム（現・富士フイルム）",
+    "maker": "富士写真フイルム(現・富士フイルム)",
     "trivia": "「写ルンです」の名前で発売。フィルムを使い切ったら、カメラごとお店に出して現像してもらう"
   },
   {
@@ -772,11 +772,11 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-104",
-    "name": "消せるボールペン",
-    "yomi": "けせるぼーるぺん",
+    "name": "フリクション(消せるボールペン)",
+    "yomi": "ふりくしょん(けせるぼーるぺん)",
     "releaseYear": 2007,
     "maker": "パイロット",
-    "trivia": "「フリクション」の名前で発売。こすったときの熱でインクが透明になる。日本より先にヨーロッパで発売された"
+    "trivia": "こすったときの熱でインクが透明になる。日本より先にヨーロッパで発売された"
   },
   {
     "id": "item-105",
@@ -807,7 +807,7 @@ export const ITEMS: Item[] = [
     "name": "サランラップ",
     "yomi": "",
     "releaseYear": 1960,
-    "maker": "旭ダウ（現・旭化成ホームプロダクツ）",
+    "maker": "旭ダウ(現・旭化成ホームプロダクツ)",
     "trivia": "もとは戦争中の弾丸の包みに使われた素材。家庭用ラップとして日本に広まった"
   },
   {
@@ -815,7 +815,7 @@ export const ITEMS: Item[] = [
     "name": "カルピス",
     "yomi": "",
     "releaseYear": 1919,
-    "maker": "ラクトー（現・カルピス）",
+    "maker": "ラクトー(現・カルピス)",
     "trivia": "七夕の7月7日に発売。モンゴルの遊牧民の乳製品がヒントになった"
   },
   {
@@ -831,7 +831,7 @@ export const ITEMS: Item[] = [
     "name": "蚊取り線香",
     "yomi": "かとりせんこう",
     "releaseYear": 1890,
-    "maker": "上山英一郎（現・大日本除虫菊）",
+    "maker": "上山英一郎(現・大日本除虫菊)",
     "trivia": "最初は棒の形だった。うずまき形は、長く燃えるように工夫して生まれた"
   },
   {
@@ -879,15 +879,15 @@ export const ITEMS: Item[] = [
     "name": "化学肥料",
     "yomi": "かがくひりょう",
     "releaseYear": 1888,
-    "maker": "東京人造肥料会社（現・日産化学）",
-    "trivia": "高峰譲吉らが会社をつくり、日本で初めて化学肥料（過リン酸石灰）を作った"
+    "maker": "東京人造肥料会社(現・日産化学)",
+    "trivia": "高峰譲吉らが会社をつくり、日本で初めて化学肥料(過リン酸石灰)を作った"
   },
   {
     "id": "item-118",
     "name": "AirPods",
     "yomi": "えあーぽっず",
     "releaseYear": 2016,
-    "maker": "Apple",
+    "maker": "Apple(アメリカ)",
     "trivia": "左右がコードでつながっていない「完全ワイヤレス」イヤホンを広めた"
   },
   {
@@ -903,7 +903,7 @@ export const ITEMS: Item[] = [
     "name": "あんぱん",
     "yomi": "",
     "releaseYear": 1874,
-    "maker": "木村屋（現・木村屋總本店）",
+    "maker": "木村屋(現・木村屋總本店)",
     "trivia": "木村安兵衛が、パンの生地にあんこを包んで考案。明治天皇にも献上された"
   },
   {
@@ -912,7 +912,7 @@ export const ITEMS: Item[] = [
     "yomi": "",
     "releaseYear": 2003,
     "maker": "日本交通事故鑑識研究所",
-    "trivia": "タクシー会社と共同開発した「WITNESS（ウィットネス）」が日本初の市販品"
+    "trivia": "タクシー会社と共同開発した「WITNESS(ウィットネス)」が日本初の市販品"
   },
   {
     "id": "item-124",
@@ -927,7 +927,7 @@ export const ITEMS: Item[] = [
     "name": "味の素",
     "yomi": "あじのもと",
     "releaseYear": 1909,
-    "maker": "鈴木製薬所（現・味の素）",
+    "maker": "鈴木製薬所(現・味の素)",
     "trivia": "池田菊苗博士が昆布だしの「うま味」の正体を発見して生まれた"
   },
   {
@@ -967,7 +967,7 @@ export const ITEMS: Item[] = [
     "name": "キャラメル",
     "yomi": "",
     "releaseYear": 1913,
-    "maker": "森永商店（現・森永製菓）",
+    "maker": "森永商店(現・森永製菓)",
     "trivia": "「ミルクキャラメル」の名前で発売。最初はばら売りで、あとから黄色い紙の箱入りになった"
   },
   {
@@ -975,7 +975,7 @@ export const ITEMS: Item[] = [
     "name": "歯磨き粉",
     "yomi": "はみがきこ",
     "releaseYear": 1896,
-    "maker": "小林富次郎商店（現・ライオン）",
+    "maker": "小林富次郎商店(現・ライオン)",
     "trivia": "「獅子印ライオン歯磨」の名前で発売。ライオンのように強い歯を、という願いがこめられている"
   },
   {
@@ -1028,8 +1028,8 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-141",
-    "name": "エネループ（充電式乾電池）",
-    "yomi": "えねるーぷ（じゅうでんしきかんでんち）",
+    "name": "エネループ(充電式乾電池)",
+    "yomi": "えねるーぷ(じゅうでんしきかんでんち)",
     "releaseYear": 2005,
     "maker": "三洋電機",
     "trivia": "くり返し充電して使える乾電池。買ってすぐ使えるように、最初から充電された状態で売り出された"
@@ -1039,7 +1039,7 @@ export const ITEMS: Item[] = [
     "name": "目覚まし時計",
     "yomi": "めざましどけい",
     "releaseYear": 1899,
-    "maker": "精工舎（現・セイコー）",
+    "maker": "精工舎(現・セイコー)",
     "trivia": "服部金太郎の精工舎が、国産の目覚まし時計を作り始めた"
   },
   {
@@ -1055,7 +1055,7 @@ export const ITEMS: Item[] = [
     "name": "ブルガリアヨーグルト",
     "yomi": "",
     "releaseYear": 1973,
-    "maker": "明治乳業（現・明治）",
+    "maker": "明治乳業(現・明治)",
     "trivia": "最初は「明治プレーンヨーグルト」という名前だった。本場ブルガリアの国から名前を使う許可をもらった"
   },
   {
@@ -1100,24 +1100,24 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-150",
-    "name": "ミシン",
-    "yomi": "",
-    "releaseYear": 1921,
-    "maker": "パイン裁縫機械製作所（現・ジャノメ）",
-    "trivia": "日本で初めての国産ミシンメーカーが生まれた。それまでは外国製のミシンばかりだった"
+    "name": "ミシン(足踏み式)",
+    "yomi": "みしん(あしぶみしき)",
+    "releaseYear": 1900,
+    "maker": "シンガー社(アメリカ)",
+    "trivia": "アメリカのシンガー社が日本にお店を出して売り始めた。机の下のペダルを足で踏んで、針を動かす"
   },
   {
     "id": "item-151",
     "name": "冷凍食品",
     "yomi": "れいとうしょくひん",
     "releaseYear": 1930,
-    "maker": "日本食料工業（現・ニッスイ）",
+    "maker": "日本食料工業(現・ニッスイ)",
     "trivia": "日本で初めて売り出された冷凍食品は「冷凍いちご」だったと言われる"
   },
   {
     "id": "item-152",
-    "name": "気泡緩衝材（プチプチ）",
-    "yomi": "きほうかんしょうざい（ぷちぷち）",
+    "name": "気泡緩衝材(プチプチ)",
+    "yomi": "きほうかんしょうざい(ぷちぷち)",
     "releaseYear": 1968,
     "maker": "川上産業",
     "trivia": "つぶすとプチプチ音がする、割れ物を包むシート。日本で初めて売り出した会社の商品名が「プチプチ」"
@@ -1127,7 +1127,7 @@ export const ITEMS: Item[] = [
     "name": "腕時計",
     "yomi": "うでどけい",
     "releaseYear": 1913,
-    "maker": "精工舎（現・セイコー）",
+    "maker": "精工舎(現・セイコー)",
     "trivia": "国産初の腕時計「ローレル」を発売。1日に作れる数は、ほんの少しだった"
   },
   {
@@ -1159,7 +1159,7 @@ export const ITEMS: Item[] = [
     "name": "ティッシュペーパー",
     "yomi": "",
     "releaseYear": 1964,
-    "maker": "十條キンバリー（現・日本製紙クレシア）",
+    "maker": "十條キンバリー(現・日本製紙クレシア)",
     "trivia": "「クリネックスティシュー」の名前で発売。発売記念に配ったら、大人気になった"
   },
   {
@@ -1167,7 +1167,7 @@ export const ITEMS: Item[] = [
     "name": "三ツ矢サイダー",
     "yomi": "みつやさいだー",
     "releaseYear": 1907,
-    "maker": "帝国鉱泉（現・アサヒ飲料）",
+    "maker": "帝国鉱泉(現・アサヒ飲料)",
     "trivia": "兵庫県の平野でわく炭酸水がもと。最初は「三ツ矢印 平野シャンペンサイダー」という名前だった"
   },
   {
@@ -1183,13 +1183,13 @@ export const ITEMS: Item[] = [
     "name": "プロテイン",
     "yomi": "",
     "releaseYear": 1980,
-    "maker": "明治製菓（現・明治）",
+    "maker": "明治製菓(現・明治)",
     "trivia": "「ザバス」の名前で発売。スポーツ選手の体づくりを栄養で支えようと生まれた"
   },
   {
     "id": "item-161",
-    "name": "初心者マーク（若葉マーク）",
-    "yomi": "しょしんしゃまーく（わかばまーく）",
+    "name": "初心者マーク(若葉マーク)",
+    "yomi": "しょしんしゃまーく(わかばまーく)",
     "releaseYear": 1972,
     "maker": "",
     "trivia": "免許を取ってから1年間、車に付けることになっている。緑と黄色は若い芽を表していて「若葉マーク」とも呼ばれる"
@@ -1199,7 +1199,7 @@ export const ITEMS: Item[] = [
     "name": "鉛筆",
     "yomi": "えんぴつ",
     "releaseYear": 1887,
-    "maker": "真崎鉛筆製造所（現・三菱鉛筆）",
+    "maker": "真崎鉛筆製造所(現・三菱鉛筆)",
     "trivia": "真崎仁六が日本で初めて鉛筆を工場で作り始めた。それまでは筆と墨で字を書いていた"
   }
 ];
