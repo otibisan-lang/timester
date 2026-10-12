@@ -57,7 +57,7 @@
   </div>
   <div class="flex gap-4">
     <div class="bg-theme-coral text-white font-bold w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-sm tabular-nums mt-0.5">2</div>
-    <p class="text-sm min-w-0">司会が画面に出た<strong>商品名</strong>を読み上げます。プレイヤーはその商品の「発売年」を<strong>予想</strong>して、紙を並べてください。</p>
+    <p class="text-sm min-w-0">司会が画面に出た<strong>商品名</strong>を読み上げます。プレイヤーはその商品の「発売年」を<strong>予想</strong>して、紙を並べてください。<br />商品が何か分からないときは、<strong>「パス」</strong>で次のカードに進めます。</p>
   </div>
   <div class="flex gap-4">
     <div class="bg-theme-blue text-white font-bold w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-sm tabular-nums mt-0.5">3</div>

@@ -10,6 +10,16 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.3.0',
+    date: '2026-10-12',
+    changes: [
+      '何か分からないアイテムのときに使える「パス」を追加しました。',
+      'アイテムを50個追加しました（収録数150）。',
+      '発売年の下に、和暦（明治・大正・昭和・平成・令和）も表示するようにしました。',
+      '一部のアイテム名を、分かりやすい名前に変えました。',
+    ],
+  },
+  {
     version: '1.2.0',
     date: '2026-10-09',
     changes: [

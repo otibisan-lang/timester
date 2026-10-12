@@ -10,6 +10,7 @@ import { ITEMS } from './generated/items';
 import { Item, GameState } from './types';
 import { HowToPlayBody } from './HowToPlayBody';
 import { CHANGELOG } from './changelog';
+import { toWareki } from './wareki';
 
 // バージョンと更新日は、更新履歴（changelog.ts）の一番上から取る
 const APP_VERSION = CHANGELOG[0].version;
@@ -68,6 +69,7 @@ type SavedProgress = {
   round: number;
   originRound: number;
   historyIds: string[];
+  passedIds?: string[];
   currentId: string | null;
   gameState: GameState;
 };
@@ -93,6 +95,7 @@ function loadProgress() {
       round: saved.round,
       originRound: saved.originRound,
       history,
+      passedIds: saved.passedIds ?? [],
       currentItem,
       gameState,
     };
@@ -131,6 +134,8 @@ export default function App() {
   // この試合の起点カードが山札の何枚目か（ここより前には戻れない）
   const [originRound, setOriginRound] = useState(saved?.originRound ?? 0);
   const [history, setHistory] = useState<Item[]>(saved?.history ?? []);
+  // この試合でパスしたカード（「ひとつ戻る」で答えを見せずに問題へ戻すため）
+  const [passedIds, setPassedIds] = useState<string[]>(saved?.passedIds ?? []);
 
   useEffect(() => {
     saveProgress({
@@ -138,10 +143,11 @@ export default function App() {
       round,
       originRound,
       historyIds: history.map((item) => item.id),
+      passedIds,
       currentId: currentItem?.id ?? null,
       gameState,
     });
-  }, [deck, round, originRound, history, currentItem, gameState]);
+  }, [deck, round, originRound, history, passedIds, currentItem, gameState]);
   const [showRules, setShowRules] = useState(false);
   const [showExitConfirm, setShowExitConfirm] = useState(false);
   const [showShuffleConfirm, setShowShuffleConfirm] = useState(false);
@@ -165,6 +171,7 @@ export default function App() {
     setCurrentItem(cards[index]);
     setRound(index + 1);
     setHistory([cards[index]]);
+    setPassedIds([]);
     setOriginRound(index + 1);
     setGameState('ORIGIN');
   }, []);
@@ -189,6 +196,12 @@ export default function App() {
     drawFrom(deck, round);
   }, [round, deck, drawFrom]);
 
+  /** 何か分からないときのパス。答えを見せずに次のカードへ（パスしたカードは出題履歴に入れない） */
+  const passItem = () => {
+    if (currentItem) setPassedIds((prev) => [...prev, currentItem.id]);
+    nextItem();
+  };
+
   const revealInfo = () => {
     if (currentItem && !history.find((c) => c.id === currentItem.id)) {
       setHistory((prev) => [...prev, currentItem]);
@@ -200,7 +213,7 @@ export default function App() {
 
   const canGoBack = gameState === 'REVEALED' || (gameState === 'PLAYING' && round > originRound);
 
-  /** ひとつ前の画面に戻る。答え→同じカードの問題、問題→前のカードの答え（前が起点カードなら起点カード） */
+  /** ひとつ前の画面に戻る。答え→同じカードの問題、問題→前のカードの答え（前が起点カードなら起点カード、パスしたカードなら問題） */
   const goBack = () => {
     if (gameState === 'REVEALED' && currentItem) {
       setHistory((prev) => prev.filter((c) => c.id !== currentItem.id));
@@ -209,8 +222,15 @@ export default function App() {
     }
     if (gameState === 'PLAYING' && round > originRound) {
       const prevRound = round - 1;
-      setCurrentItem(deck[prevRound - 1]);
+      const prevItem = deck[prevRound - 1];
+      setCurrentItem(prevItem);
       setRound(prevRound);
+      if (passedIds.includes(prevItem.id)) {
+        // パスしたカードには、答えを見せずに問題の画面で戻る
+        setPassedIds((prev) => prev.filter((id) => id !== prevItem.id));
+        setGameState('PLAYING');
+        return;
+      }
       setGameState(prevRound === originRound ? 'ORIGIN' : 'REVEALED');
     }
   };
@@ -412,6 +432,7 @@ export default function App() {
                   <p className="text-6xl md:text-7xl font-black text-theme-coral font-display leading-none">
                     {currentItem.releaseYear}
                   </p>
+                  <p className="text-xs md:text-sm font-bold text-gray-500">{toWareki(currentItem.releaseYear)}</p>
                 </div>
                 <p className="text-[11px] md:text-xs text-gray-500 font-bold leading-relaxed">
                   このカードが起点となります。次のカードからは、このカードよりも古いか、新しいかを判断してください。
@@ -459,6 +480,13 @@ export default function App() {
                         ) : null}
                       </div>
                       <button
+                        type="button"
+                        onClick={passItem}
+                        className="-mt-1 md:-mt-3 text-xs md:text-sm font-bold text-gray-400 underline underline-offset-2 hover:text-theme-blue transition-colors"
+                      >
+                        何か分からないときは、パス →
+                      </button>
+                      <button
                         id="reveal-button"
                         onClick={revealInfo}
                         className="max-md:hidden w-full bg-theme-coral text-white px-8 py-6 rounded-[20px] font-black text-3xl shadow-[0_6px_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3"
@@ -472,19 +500,22 @@ export default function App() {
                       key="revealed-state"
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-white rounded-[40px] border-[8px] border-theme-green p-6 md:p-10 shadow-[12px_12px_0_#6BCB77] flex flex-col gap-4 md:gap-5 text-center"
+                      className="bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-green px-5 py-4 md:p-10 shadow-[8px_8px_0_#6BCB77] md:shadow-[12px_12px_0_#6BCB77] flex flex-col gap-2.5 md:gap-5 text-center"
                     >
-                      <div className="text-[14px] font-bold text-gray-400 tracking-widest uppercase">RELEASE YEAR</div>
-                      <div className="text-7xl md:text-8xl font-black text-theme-coral font-display leading-none">
-                        {currentItem.releaseYear}
+                      <div className="text-[11px] md:text-[14px] font-bold text-gray-400 tracking-widest uppercase">RELEASE YEAR</div>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="text-6xl md:text-8xl font-black text-theme-coral font-display leading-none">
+                          {currentItem.releaseYear}
+                        </div>
+                        <div className="text-xs md:text-sm font-bold text-gray-500">{toWareki(currentItem.releaseYear)}</div>
                       </div>
-                      <h3><ItemName item={currentItem} className="text-3xl md:text-4xl font-black text-[#1A5F7A] break-words" /></h3>
+                      <h3><ItemName item={currentItem} className="text-2xl md:text-4xl font-black text-[#1A5F7A] break-words" /></h3>
                       {currentItem.maker ? (
-                        <p className="-mt-2 text-sm font-bold text-[#01579B]">発売元：{currentItem.maker}</p>
+                        <p className="-mt-1 md:-mt-2 text-xs md:text-sm font-bold text-[#01579B]">発売元：{currentItem.maker}</p>
                       ) : null}
 
                       {currentItem.trivia ? (
-                        <div className="bg-theme-trivia p-5 rounded-2xl border-2 border-dashed border-theme-yellow text-sm md:text-base leading-relaxed text-[#5D4037] font-medium text-left">
+                        <div className="bg-theme-trivia px-4 py-3 md:p-5 rounded-2xl border-2 border-dashed border-theme-yellow text-[13px] md:text-base leading-relaxed text-[#5D4037] font-medium text-left">
                           <strong>豆知識:</strong> {currentItem.trivia}
                         </div>
                       ) : null}
