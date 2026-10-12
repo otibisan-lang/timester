@@ -36,6 +36,10 @@ const HINTS = [
   'ほかの人が出したカードもヒントになるかも。',
 ];
 
+/** 起点カードに使う年の範囲（収録のおよそ半分がこの中に入る） */
+const ORIGIN_MIN_YEAR = 1950;
+const ORIGIN_MAX_YEAR = 2005;
+
 /** 投げ銭（OFUSE）。金額は開いた画面で選ぶ（最初は550円、つまみのいちばん左が100円） */
 const SUPPORT_URL = 'https://ofuse.me/80a788c8/letter';
 
@@ -171,6 +175,20 @@ export default function App() {
 
   /** 試合の最初の1枚を起点カードとして出す。答えは最初から見せるので、出題履歴にも入れる */
   const drawOrigin = useCallback((cards: Item[], index: number) => {
+    // 起点カードは真ん中あたりの年代にする（いちばん古い・新しいものが出ると、前後どちらかしか置けず興ざめなので）。
+    // 山札の残りから範囲内のカードを探し、いまの位置と入れかえる。
+    // 山札の終わりぎわで範囲内が残っていなければ、残りの中でいちばん範囲に近いものを使う。
+    const distance = (y: number) => Math.max(ORIGIN_MIN_YEAR - y, y - ORIGIN_MAX_YEAR, 0);
+    let pick = index;
+    for (let i = index; i < cards.length; i++) {
+      if (distance(cards[i].releaseYear) < distance(cards[pick].releaseYear)) pick = i;
+      if (distance(cards[pick].releaseYear) === 0) break;
+    }
+    if (pick > index) {
+      cards = [...cards];
+      [cards[index], cards[pick]] = [cards[pick], cards[index]];
+      setDeck(cards);
+    }
     setCurrentItem(cards[index]);
     setRound(index + 1);
     setHistory([cards[index]]);

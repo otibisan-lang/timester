@@ -10,6 +10,11 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.4.1',
+    date: '2026-10-12',
+    changes: ['起点カードは、真ん中あたりの年代のアイテムから出るようにしました。'],
+  },
+  {
     version: '1.4.0',
     date: '2026-10-12',
     changes: [
