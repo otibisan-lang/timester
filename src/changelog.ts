@@ -10,6 +10,11 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.4.3',
+    date: '2026-10-12',
+    changes: ['アイテムを見直しました（1つ追加。収録数151）。', '国産品の年を答えにするアイテムは、名前に(国産)を付けました（9つ）。'],
+  },
+  {
     version: '1.4.2',
     date: '2026-10-12',
     changes: ['アイテムの発売年を見直しました（3つ。輸入品が先に発売されていたもの）。'],
