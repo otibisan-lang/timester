@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Play, RotateCcw, Info, Trophy, ArrowRight, Hourglass, Shuffle, ExternalLink, Lightbulb } from 'lucide-react';
+import { Play, RotateCcw, Info, Trophy, ArrowRight, Shuffle, ExternalLink, Lightbulb } from 'lucide-react';
 import { ITEMS } from './generated/items';
 import { Item, GameState } from './types';
 import { HowToPlayBody } from './HowToPlayBody';
@@ -35,6 +35,9 @@ const HINTS = [
   'ゲーム機やおもちゃは、1980年以降が多いよ。',
   'ほかの人が出したカードもヒントになるかも。',
 ];
+
+/** 投げ銭（OFUSE）。金額は開いた画面で選ぶ（最初は550円、つまみのいちばん左が100円） */
+const SUPPORT_URL = 'https://ofuse.me/66774495/letter';
 
 const OTHER_VERSIONS = [
   {
@@ -323,19 +326,20 @@ export default function App() {
               >
                 <div className="w-full bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-blue px-5 py-6 md:p-14 shadow-[8px_8px_0_#4D96FF] md:shadow-[12px_12px_0_#4D96FF] flex flex-col items-center text-center max-w-2xl mx-auto"
               >
-                <div className="w-14 h-14 md:w-24 md:h-24 mb-3 md:mb-6 bg-theme-yellow border-4 border-white rounded-2xl md:rounded-3xl flex items-center justify-center shadow-lg transform -rotate-3 text-gray-800">
-                  <Hourglass className="w-7 h-7 md:w-12 md:h-12" />
+                <div className="w-16 h-16 md:w-28 md:h-28 mb-3 md:mb-6 border-4 border-white rounded-2xl md:rounded-3xl overflow-hidden shadow-lg transform -rotate-3">
+                  {/* favicon・印刷したカードと同じ砂時計の絵をそのまま使う */}
+                  <img src="apple-touch-icon.png" alt="" className="w-full h-full" />
                 </div>
-                <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-3 md:mb-5 font-display italic tracking-tighter leading-tight">
+                <h1 className="text-5xl md:text-7xl font-black text-gray-900 mb-3 md:mb-5 font-display italic tracking-tighter leading-tight">
                   TIMESTER
                   <span className="mt-1 flex items-center justify-center gap-2 not-italic tracking-normal">
-                    <span className="text-lg md:text-2xl text-theme-coral opacity-80 font-bold">タイムスター</span>
-                    <span className="rounded-full bg-theme-yellow px-2 py-0.5 text-[10px] md:text-xs font-black text-gray-800">
+                    <span className="text-xl md:text-3xl text-theme-coral opacity-80 font-bold">タイムスター</span>
+                    <span className="rounded-full bg-theme-yellow px-2 py-0.5 text-xs md:text-sm font-black text-gray-800">
                       {EDITION_NAME}
                     </span>
                   </span>
                 </h1>
-                <p className="text-gray-600 mb-5 md:mb-8 leading-relaxed text-sm md:text-lg max-w-md">
+                <p className="text-gray-600 mb-5 md:mb-8 leading-relaxed text-base md:text-xl max-w-md">
                   身近な商品の発売年を当てて<br />
                   タイムラインを作ろう！
                 </p>
@@ -359,7 +363,7 @@ export default function App() {
                   <button
                     id="quick-start-button"
                     onClick={startGame}
-                    className="w-full bg-theme-coral text-white px-8 py-5 md:py-6 rounded-[20px] font-black text-2xl md:text-3xl shadow-[0_6px_0_#D32F2F] hover:scale-[1.03] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3"
+                    className="w-full bg-theme-coral text-white px-8 py-3.5 md:py-4 rounded-[20px] font-black text-2xl md:text-3xl shadow-[0_6px_0_#D32F2F] hover:scale-[1.03] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3"
                   >
                     <Play className="w-7 h-7 md:w-8 md:h-8 fill-current" />
                     ゲームを始める
@@ -975,16 +979,31 @@ export default function App() {
 
       <footer className="py-4 md:py-8 text-center text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em] shrink-0 flex flex-col items-center gap-2">
         <span>&copy; 2026 TIMESTER • タイムスター {EDITION_NAME}</span>
-        {FEEDBACK_FORM_URL ? (
+        <div className="flex items-center gap-3 normal-case tracking-normal font-black text-xs">
+          {FEEDBACK_FORM_URL ? (
+            <>
+              <a
+                href={FEEDBACK_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-theme-blue hover:text-theme-coral hover:underline"
+              >
+                感想・ご意見はこちら
+              </a>
+              <span className="text-gray-300" aria-hidden>
+                |
+              </span>
+            </>
+          ) : null}
           <a
-            href={FEEDBACK_FORM_URL}
+            href={SUPPORT_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="normal-case tracking-normal text-theme-blue hover:text-theme-coral hover:underline font-black text-xs"
+            className="text-theme-blue hover:text-theme-coral hover:underline"
           >
-            感想・ご意見はこちら（外部フォーム）
+            ￥100投げ銭する
           </a>
-        ) : null}
+        </div>
       </footer>
     </div>
   );
