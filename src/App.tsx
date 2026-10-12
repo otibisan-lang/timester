@@ -37,7 +37,7 @@ const HINTS = [
 ];
 
 /** 投げ銭（OFUSE）。金額は開いた画面で選ぶ（最初は550円、つまみのいちばん左が100円） */
-const SUPPORT_URL = 'https://ofuse.me/66774495/letter';
+const SUPPORT_URL = 'https://ofuse.me/80a788c8/letter';
 
 const OTHER_VERSIONS = [
   {
@@ -401,11 +401,21 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 1.05 }}
-                className="bg-white rounded-[40px] border-[8px] border-theme-yellow p-6 md:p-12 shadow-[12px_12px_0_#FFD93D] max-w-3xl mx-auto overflow-y-auto max-h-[80vh] custom-scrollbar"
+                className="relative max-w-3xl mx-auto"
               >
+                {/* スクロールしても見えるよう、×は枠の外側（スクロールしない側）に置く */}
+                <button
+                  type="button"
+                  onClick={() => setGameState('START')}
+                  aria-label="閉じる"
+                  className="absolute top-4 right-4 md:top-5 md:right-5 z-10 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors text-gray-500 hover:text-gray-800"
+                >
+                  <div className="text-xl font-black">×</div>
+                </button>
+                <div className="bg-white rounded-[40px] border-[8px] border-theme-yellow p-6 md:p-12 shadow-[12px_12px_0_#FFD93D] overflow-y-auto max-h-[80vh] custom-scrollbar">
                 <HowToPlayBody />
 
-                <div className="mt-10 flex justify-center">
+                <div className="mt-10 mx-auto flex w-full md:w-fit flex-col gap-4">
                   <button
                     onClick={startGame}
                     className="bg-theme-coral text-white px-8 md:px-16 py-4 md:py-5 rounded-[20px] font-black text-lg md:text-2xl whitespace-nowrap shadow-[0_6px_0_#D32F2F] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 md:gap-3 uppercase"
@@ -413,6 +423,15 @@ export default function App() {
                     ゲームを始める
                     <Play className="w-5 h-5 md:w-7 md:h-7 fill-current" />
                   </button>
+                  <a
+                    href={SUPPORT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-theme-green text-white px-4 md:px-16 py-4 md:py-5 rounded-[20px] font-black text-base sm:text-lg md:text-2xl whitespace-nowrap shadow-[0_6px_0_#3FA34D] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 md:gap-3"
+                  >
+                    楽しかったので￥100投げ銭する
+                  </a>
+                </div>
                 </div>
               </motion.div>
             )}
