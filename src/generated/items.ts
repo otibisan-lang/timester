@@ -22,9 +22,9 @@ export const ITEMS: Item[] = [
     "id": "item-5",
     "name": "電気アイロン",
     "yomi": "でんきあいろん",
-    "releaseYear": 1915,
-    "maker": "芝浦製作所(現・東芝)",
-    "trivia": "芝浦製作所(国産第1号)。輸入は1914年"
+    "releaseYear": 1914,
+    "maker": "",
+    "trivia": "最初は輸入品(1914年)。国産第1号は1915年、芝浦製作所(現・東芝)"
   },
   {
     "id": "item-6",
@@ -302,9 +302,9 @@ export const ITEMS: Item[] = [
     "id": "item-41",
     "name": "扇風機",
     "yomi": "せんぷうき",
-    "releaseYear": 1894,
-    "maker": "芝浦製作所(現・東芝)",
-    "trivia": "芝浦製作所(国産第1号)。輸入は1893年"
+    "releaseYear": 1893,
+    "maker": "",
+    "trivia": "最初は輸入品(1893年)。国産第1号は1894年、芝浦製作所(現・東芝)"
   },
   {
     "id": "item-42",
@@ -342,9 +342,9 @@ export const ITEMS: Item[] = [
     "id": "item-46",
     "name": "チャック",
     "yomi": "",
-    "releaseYear": 1927,
-    "maker": "日本開閉器工場",
-    "trivia": "広島県尾道の日本開閉器工場が「チャック印」の財布で製造・販売開始(国産初)。輸入は1917年"
+    "releaseYear": 1917,
+    "maker": "",
+    "trivia": "最初は輸入品(1917年)。国産初は1927年、広島県尾道の日本開閉器工場が「チャック印」の財布で製造・販売"
   },
   {
     "id": "item-47",
