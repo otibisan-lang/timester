@@ -10,6 +10,11 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.3.4',
+    date: '2026-10-12',
+    changes: ['遊んでくれた人数を数える仕組みを入れました（Cookie は使わず、個人は特定しません）。'],
+  },
+  {
     version: '1.3.3',
     date: '2026-10-12',
     changes: ['発売元の表記を見直しました（1つ）。'],
