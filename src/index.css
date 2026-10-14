@@ -12,3 +12,14 @@
   --color-theme-yellow: #FFD93D;
   --color-theme-trivia: #FFF9C4;
 }
+
+/*
+ * タブレット（指で操作する、幅768px以上の画面）では、画面の大きさに合わせて全体を大きくする。
+ * 文字・余白・ボタン・角の丸み・影はすべて rem で書いてあるので、html の文字サイズだけで一緒に拡大される。
+ * 幅と高さの小さいほうに合わせるので、横向きでも縦にはみ出しにくい。パソコン（マウス操作）は今のまま。
+ */
+@media (min-width: 768px) and (pointer: coarse) {
+  html {
+    font-size: clamp(16px, min(2.08vw, 2.1vh), 26px);
+  }
+}

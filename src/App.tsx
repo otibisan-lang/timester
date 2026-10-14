@@ -40,6 +40,12 @@ const HINTS = [
 const ORIGIN_MIN_YEAR = 1950;
 const ORIGIN_MAX_YEAR = 2005;
 
+/** 共有（QR・LINE・X）。アドレスを変えたら print/make_share_qr.py も直して QR を作り直す */
+const SITE_URL = 'https://otibisan-lang.github.io/timester/';
+const SHARE_TEXT = '身近な商品の発売年を当てて、タイムラインを作ろう！ TIMESTER タイムスター';
+const LINE_SHARE_URL = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(SITE_URL)}`;
+const X_SHARE_URL = `https://x.com/intent/tweet?text=${encodeURIComponent(SHARE_TEXT)}&url=${encodeURIComponent(SITE_URL)}`;
+
 /** 投げ銭（OFUSE）。金額は開いた画面で選ぶ（最初は550円、つまみのいちばん左が100円） */
 const SUPPORT_URL = 'https://ofuse.me/80a788c8/letter';
 
@@ -162,6 +168,7 @@ export default function App() {
   const [showOtherVersions, setShowOtherVersions] = useState(false);
   const [showHints, setShowHints] = useState(false);
   const [showChangelog, setShowChangelog] = useState(false);
+  const [showShare, setShowShare] = useState(false);
 
   useEffect(() => {
     document.title = `TIMESTER タイムスター ${EDITION_NAME}`;
@@ -287,14 +294,14 @@ export default function App() {
   return (
     <div className="min-h-[100dvh] bg-theme-bg text-gray-800 font-sans selection:bg-yellow-200 flex flex-col">
       {/* Header */}
-      <header className="bg-theme-coral px-4 md:px-5 pb-3 md:pb-5 pt-[max(0.75rem,env(safe-area-inset-top,0px))] md:pt-[max(1.25rem,env(safe-area-inset-top,0px))] flex justify-between items-center shadow-[0_4px_0_rgba(0,0,0,0.1)] relative z-10 shrink-0">
+      <header className="bg-theme-coral px-4 md:px-5 pb-3 md:pb-5 pt-[max(0.75rem,env(safe-area-inset-top,0rem))] md:pt-[max(1.25rem,env(safe-area-inset-top,0rem))] flex justify-between items-center shadow-[0_0.25rem_0_rgba(0,0,0,0.1)] relative z-10 shrink-0">
         <button
           type="button"
           onClick={onClickHeaderTitle}
           className="text-left text-white font-black text-2xl md:text-3xl tracking-tighter font-display uppercase italic flex items-baseline gap-2 cursor-pointer hover:opacity-90 transition-opacity"
         >
           TIMESTER
-          <span className="text-[10px] md:text-xs font-bold bg-white/20 px-2 py-0.5 rounded-md normal-case not-italic">
+          <span className="text-[0.625rem] md:text-xs font-bold bg-white/20 px-2 py-0.5 rounded-md normal-case not-italic">
             {EDITION_NAME}
           </span>
         </button>
@@ -314,8 +321,8 @@ export default function App() {
       <main
         className={`flex-1 min-h-0 max-w-6xl mx-auto w-full px-4 py-4 md:py-12 flex flex-col items-center justify-center ${
           showMobilePlayDock
-            ? 'max-md:pb-[calc(5.25rem+env(safe-area-inset-bottom,0px))]'
-            : 'pb-[max(0.5rem,env(safe-area-inset-bottom,0px))]'
+            ? 'max-md:pb-[calc(5.25rem+env(safe-area-inset-bottom,0rem))]'
+            : 'pb-[max(0.5rem,env(safe-area-inset-bottom,0rem))]'
         }`}
       >
         {isInGame ? (
@@ -342,7 +349,7 @@ export default function App() {
                 exit={{ scale: 1.05, opacity: 0 }}
                 className="mx-auto flex w-full max-w-2xl flex-col items-center"
               >
-                <div className="w-full bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-blue px-5 py-6 md:p-14 shadow-[8px_8px_0_#4D96FF] md:shadow-[12px_12px_0_#4D96FF] flex flex-col items-center text-center max-w-2xl mx-auto"
+                <div className="w-full bg-white rounded-[2rem] md:rounded-[2.5rem] border-[0.375rem] md:border-[0.5rem] border-theme-blue px-5 py-6 md:p-14 shadow-[0.5rem_0.5rem_0_#4D96FF] md:shadow-[0.75rem_0.75rem_0_#4D96FF] flex flex-col items-center text-center max-w-2xl mx-auto"
               >
                 <div className="w-16 h-16 md:w-28 md:h-28 mb-3 md:mb-6 border-4 border-white rounded-2xl md:rounded-3xl overflow-hidden shadow-lg transform -rotate-3">
                   {/* favicon・印刷したカードと同じ砂時計の絵をそのまま使う */}
@@ -366,14 +373,14 @@ export default function App() {
                     <button
                       id="explain-button"
                       onClick={() => setGameState('EXPLAIN')}
-                      className="bg-theme-blue text-white px-2 py-3 md:py-4 rounded-[16px] md:rounded-[18px] font-black text-sm sm:text-base md:text-lg whitespace-nowrap shadow-[0_5px_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-1.5"
+                      className="bg-theme-blue text-white px-2 py-3 md:py-4 rounded-[1rem] md:rounded-[1.125rem] font-black text-sm sm:text-base md:text-lg whitespace-nowrap shadow-[0_0.3125rem_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-1.5"
                     >
                       あそびかた
                       <ArrowRight className="w-5 h-5 shrink-0" />
                     </button>
                     <button
                       onClick={() => setShowCatalog(true)}
-                      className="bg-white text-theme-blue px-2 py-3 md:py-4 rounded-[16px] md:rounded-[18px] font-black text-sm sm:text-base md:text-lg whitespace-nowrap border-2 border-theme-blue/30 shadow-[0_5px_0_rgba(77,150,255,0.2)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
+                      className="bg-white text-theme-blue px-2 py-3 md:py-4 rounded-[1rem] md:rounded-[1.125rem] font-black text-sm sm:text-base md:text-lg whitespace-nowrap border-2 border-theme-blue/30 shadow-[0_0.3125rem_0_rgba(77,150,255,0.2)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
                     >
                       収録アイテム一覧
                     </button>
@@ -381,13 +388,13 @@ export default function App() {
                   <button
                     id="quick-start-button"
                     onClick={startGame}
-                    className="w-full bg-theme-coral text-white px-8 py-3.5 md:py-4 rounded-[20px] font-black text-2xl md:text-3xl shadow-[0_6px_0_#D32F2F] hover:scale-[1.03] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3"
+                    className="w-full bg-theme-coral text-white px-8 py-3.5 md:py-4 rounded-[1.25rem] font-black text-2xl md:text-3xl shadow-[0_0.375rem_0_#D32F2F] hover:scale-[1.03] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3"
                   >
                     <Play className="w-7 h-7 md:w-8 md:h-8 fill-current" />
                     ゲームを始める
                   </button>
                 </div>
-                <p className="mt-5 md:mt-8 text-[11px] md:text-xs text-gray-400 font-bold">
+                <p className="mt-5 md:mt-8 text-[0.6875rem] md:text-xs text-gray-400 font-bold">
                   v{APP_VERSION}・更新日 {LAST_UPDATED}・収録 {ITEMS.length} アイテム
                 </p>
                 </div>
@@ -430,13 +437,13 @@ export default function App() {
                 >
                   <div className="text-xl font-black">×</div>
                 </button>
-                <div className="bg-white rounded-[40px] border-[8px] border-theme-yellow p-6 md:p-12 shadow-[12px_12px_0_#FFD93D] overflow-y-auto max-h-[80vh] custom-scrollbar">
+                <div className="bg-white rounded-[2.5rem] border-[0.5rem] border-theme-yellow p-6 md:p-12 shadow-[0.75rem_0.75rem_0_#FFD93D] overflow-y-auto max-h-[80vh] custom-scrollbar">
                 <HowToPlayBody />
 
                 <div className="mt-10 mx-auto flex w-full md:w-fit flex-col gap-4">
                   <button
                     onClick={startGame}
-                    className="bg-theme-coral text-white px-8 md:px-16 py-4 md:py-5 rounded-[20px] font-black text-lg md:text-2xl whitespace-nowrap shadow-[0_6px_0_#D32F2F] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 md:gap-3 uppercase"
+                    className="bg-theme-coral text-white px-8 md:px-16 py-4 md:py-5 rounded-[1.25rem] font-black text-lg md:text-2xl whitespace-nowrap shadow-[0_0.375rem_0_#D32F2F] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 md:gap-3 uppercase"
                   >
                     ゲームを始める
                     <Play className="w-5 h-5 md:w-7 md:h-7 fill-current" />
@@ -445,7 +452,7 @@ export default function App() {
                     href={SUPPORT_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-theme-green text-white px-4 md:px-16 py-4 md:py-5 rounded-[20px] font-black text-base sm:text-lg md:text-2xl whitespace-nowrap shadow-[0_6px_0_#3FA34D] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 md:gap-3"
+                    className="bg-theme-green text-white px-4 md:px-16 py-4 md:py-5 rounded-[1.25rem] font-black text-base sm:text-lg md:text-2xl whitespace-nowrap shadow-[0_0.375rem_0_#3FA34D] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 md:gap-3"
                   >
                     楽しかったので￥100投げ銭する
                   </a>
@@ -460,7 +467,7 @@ export default function App() {
                 initial={{ x: 30, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: -30, opacity: 0 }}
-                className="mx-auto w-full max-w-xl bg-white rounded-[40px] border-[8px] border-theme-yellow p-6 md:p-10 shadow-[12px_12px_0_#FFD93D] flex flex-col items-center text-center gap-4 md:gap-6"
+                className="mx-auto w-full max-w-xl bg-white rounded-[2.5rem] border-[0.5rem] border-theme-yellow p-6 md:p-10 shadow-[0.75rem_0.75rem_0_#FFD93D] flex flex-col items-center text-center gap-4 md:gap-6"
               >
                 <span className="rounded-full bg-theme-yellow px-4 py-1 text-sm md:text-base font-black text-gray-800">
                   起点カード
@@ -475,12 +482,12 @@ export default function App() {
                   </p>
                   <p className="text-xs md:text-sm font-bold text-gray-500">{toWareki(currentItem.releaseYear)}</p>
                 </div>
-                <p className="text-[11px] md:text-xs text-gray-500 font-bold leading-relaxed">
+                <p className="text-[0.6875rem] md:text-xs text-gray-500 font-bold leading-relaxed">
                   このカードが起点となります。次のカードからは、このカードよりも古いか、新しいかを判断してください。
                 </p>
                 <button
                   onClick={nextItem}
-                  className="max-md:hidden w-full bg-theme-green text-white font-black py-5 rounded-[20px] shadow-[0_6px_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 tracking-widest text-lg"
+                  className="max-md:hidden w-full bg-theme-green text-white font-black py-5 rounded-[1.25rem] shadow-[0_0.375rem_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 tracking-widest text-lg"
                 >
                   書けたら、つぎへ進む →
                 </button>
@@ -502,7 +509,7 @@ export default function App() {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.9 }}
-                      className="bg-white rounded-[40px] border-[8px] border-theme-blue p-6 md:p-10 shadow-[12px_12px_0_#4D96FF] flex flex-col items-center text-center gap-5 md:gap-8"
+                      className="bg-white rounded-[2.5rem] border-[0.5rem] border-theme-blue p-6 md:p-10 shadow-[0.75rem_0.75rem_0_#4D96FF] flex flex-col items-center text-center gap-5 md:gap-8"
                     >
                       <div className="space-y-1.5">
                         <h2 className="font-display text-sm font-black uppercase tracking-widest text-gray-400 md:text-base">
@@ -530,7 +537,7 @@ export default function App() {
                       <button
                         id="reveal-button"
                         onClick={revealInfo}
-                        className="max-md:hidden w-full bg-theme-coral text-white px-8 py-6 rounded-[20px] font-black text-3xl shadow-[0_6px_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3"
+                        className="max-md:hidden w-full bg-theme-coral text-white px-8 py-6 rounded-[1.25rem] font-black text-3xl shadow-[0_0.375rem_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3"
                       >
                         答えをみる
                         <Info className="w-8 h-8" />
@@ -541,9 +548,9 @@ export default function App() {
                       key="revealed-state"
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-green px-5 py-4 md:p-10 shadow-[8px_8px_0_#6BCB77] md:shadow-[12px_12px_0_#6BCB77] flex flex-col gap-2.5 md:gap-5 text-center"
+                      className="bg-white rounded-[2rem] md:rounded-[2.5rem] border-[0.375rem] md:border-[0.5rem] border-theme-green px-5 py-4 md:p-10 shadow-[0.5rem_0.5rem_0_#6BCB77] md:shadow-[0.75rem_0.75rem_0_#6BCB77] flex flex-col gap-2.5 md:gap-5 text-center"
                     >
-                      <div className="text-[11px] md:text-[14px] font-bold text-gray-400 tracking-widest uppercase">RELEASE YEAR</div>
+                      <div className="text-[0.6875rem] md:text-[0.875rem] font-bold text-gray-400 tracking-widest uppercase">RELEASE YEAR</div>
                       <div className="flex flex-col items-center gap-1">
                         <div className="text-6xl md:text-8xl font-black text-theme-coral font-display leading-none">
                           {currentItem.releaseYear}
@@ -556,7 +563,7 @@ export default function App() {
                       ) : null}
 
                       {currentItem.trivia ? (
-                        <div className="bg-theme-trivia px-4 py-3 md:p-5 rounded-2xl border-2 border-dashed border-theme-yellow text-[13px] md:text-base leading-relaxed text-[#5D4037] font-medium text-left">
+                        <div className="bg-theme-trivia px-4 py-3 md:p-5 rounded-2xl border-2 border-dashed border-theme-yellow text-[0.8125rem] md:text-base leading-relaxed text-[#5D4037] font-medium text-left">
                           <strong>豆知識:</strong> {currentItem.trivia}
                         </div>
                       ) : null}
@@ -565,7 +572,7 @@ export default function App() {
                         <button
                           id="next-button"
                           onClick={nextItem}
-                          className="w-full bg-theme-green text-white font-black py-5 rounded-[20px] shadow-[0_6px_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 uppercase tracking-widest text-lg"
+                          className="w-full bg-theme-green text-white font-black py-5 rounded-[1.25rem] shadow-[0_0.375rem_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 uppercase tracking-widest text-lg"
                         >
                           つぎへ進む →
                         </button>
@@ -581,7 +588,7 @@ export default function App() {
                 key="finished"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="bg-white rounded-[40px] border-[8px] border-theme-coral p-8 md:p-12 shadow-[12px_12px_0_#FF6B6B] flex flex-col items-center max-w-3xl mx-auto"
+                className="bg-white rounded-[2.5rem] border-[0.5rem] border-theme-coral p-8 md:p-12 shadow-[0.75rem_0.75rem_0_#FF6B6B] flex flex-col items-center max-w-3xl mx-auto"
               >
                 <div className="w-20 h-20 mb-6 bg-theme-green border-4 border-white rounded-full flex items-center justify-center shadow-lg">
                   <Trophy className="w-10 h-10 text-white" />
@@ -591,7 +598,7 @@ export default function App() {
                   お疲れ様でした！今回の出題アイテムを年の順に並べました。
                 </p>
 
-                <div className="w-full bg-theme-bg rounded-3xl p-6 mb-8 max-h-[300px] overflow-y-auto border-4 border-white shadow-inner">
+                <div className="w-full bg-theme-bg rounded-3xl p-6 mb-8 max-h-[18.75rem] overflow-y-auto border-4 border-white shadow-inner">
                   <div className="space-y-3">
                     {[...history]
                       .sort((a, b) => a.releaseYear - b.releaseYear)
@@ -610,7 +617,7 @@ export default function App() {
                 <button
                   id="restart-button"
                   onClick={backToTitle}
-                  className="bg-theme-coral text-white px-12 py-5 rounded-[20px] font-black text-2xl shadow-[0_6px_0_#D32F2F] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3 uppercase"
+                  className="bg-theme-coral text-white px-12 py-5 rounded-[1.25rem] font-black text-2xl shadow-[0_0.375rem_0_#D32F2F] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3 uppercase"
                 >
                   タイトルに戻る
                   <RotateCcw className="w-6 h-6" />
@@ -624,11 +631,11 @@ export default function App() {
       {/* スマホ: プライマリ操作を常に親指圏内に */}
       {showMobilePlayDock && (
         <div
-          className="md:hidden fixed inset-x-0 bottom-0 z-40 border-t-2 border-white/70 bg-theme-bg/98 backdrop-blur-md shadow-[0_-8px_28px_rgba(0,0,0,0.12)]"
+          className="md:hidden fixed inset-x-0 bottom-0 z-40 border-t-2 border-white/70 bg-theme-bg/98 backdrop-blur-md shadow-[0_-0.5rem_1.75rem_rgba(0,0,0,0.12)]"
           style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom, 0px))' }}
         >
           <div className="max-w-6xl mx-auto w-full space-y-1 px-3 pt-1.5 pb-0.5">
-            <div className="flex items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-wide text-gray-500">
+            <div className="flex items-center justify-center gap-3 text-[0.625rem] font-bold uppercase tracking-wide text-gray-500">
               <button
                 type="button"
                 onClick={() => setShowRules(true)}
@@ -663,7 +670,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={revealInfo}
-                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-theme-coral px-4 py-3.5 font-black text-lg text-white shadow-[0_4px_0_rgba(0,0,0,0.15)] transition-all active:translate-y-0.5 active:shadow-none"
+                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-theme-coral px-4 py-3.5 font-black text-lg text-white shadow-[0_0.25rem_0_rgba(0,0,0,0.15)] transition-all active:translate-y-0.5 active:shadow-none"
               >
                 答えをみる
                 <Info className="h-5 w-5 shrink-0" />
@@ -672,7 +679,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={nextItem}
-                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-theme-green py-3.5 font-black uppercase tracking-widest text-sm text-white shadow-[0_4px_0_rgba(0,0,0,0.15)] transition-all active:translate-y-0.5 active:shadow-none"
+                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-theme-green py-3.5 font-black uppercase tracking-widest text-sm text-white shadow-[0_0.25rem_0_rgba(0,0,0,0.15)] transition-all active:translate-y-0.5 active:shadow-none"
               >
                 {gameState === 'ORIGIN' ? '書けたら、つぎへ進む →' : 'つぎへ進む →'}
               </button>
@@ -684,7 +691,7 @@ export default function App() {
       {/* Navigation */}
       {gameState !== 'START' && gameState !== 'EXPLAIN' && (
         <div
-          className={`flex flex-col items-center gap-4 pb-8 max-md:pb-[max(1.5rem,env(safe-area-inset-bottom,0px))] ${
+          className={`flex flex-col items-center gap-4 pb-8 max-md:pb-[max(1.5rem,env(safe-area-inset-bottom,0rem))] ${
             showMobilePlayDock ? 'max-md:hidden' : ''
           }`}
         >
@@ -727,7 +734,7 @@ export default function App() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="bg-white rounded-[40px] border-[8px] border-theme-blue p-6 md:p-10 shadow-2xl max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col relative"
+              className="bg-white rounded-[2.5rem] border-[0.5rem] border-theme-blue p-6 md:p-10 shadow-2xl max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col relative"
             >
               <button
                 onClick={() => setShowCatalog(false)}
@@ -760,7 +767,7 @@ export default function App() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="bg-white rounded-[40px] border-[8px] border-theme-yellow p-6 md:p-12 shadow-2xl max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col relative"
+              className="bg-white rounded-[2.5rem] border-[0.5rem] border-theme-yellow p-6 md:p-12 shadow-2xl max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col relative"
             >
               <button
                 onClick={() => setShowRules(false)}
@@ -776,7 +783,7 @@ export default function App() {
               <div className="mt-8 flex justify-center">
                 <button
                   onClick={() => setShowRules(false)}
-                  className="bg-theme-blue text-white px-12 py-4 rounded-[20px] font-black text-xl shadow-[0_6px_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
+                  className="bg-theme-blue text-white px-12 py-4 rounded-[1.25rem] font-black text-xl shadow-[0_0.375rem_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
                 >
                   閉じる
                 </button>
@@ -799,7 +806,7 @@ export default function App() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="bg-white rounded-[40px] border-[8px] border-theme-coral p-8 md:p-12 shadow-2xl max-w-md w-full flex flex-col items-center text-center"
+              className="bg-white rounded-[2.5rem] border-[0.5rem] border-theme-coral p-8 md:p-12 shadow-2xl max-w-md w-full flex flex-col items-center text-center"
             >
               <div className="w-16 h-16 bg-theme-coral/10 rounded-full flex items-center justify-center mb-6">
                 <RotateCcw className="w-8 h-8 text-theme-coral" />
@@ -810,13 +817,13 @@ export default function App() {
               <div className="flex flex-col w-full gap-3">
                 <button
                   onClick={backToTitle}
-                  className="w-full bg-theme-coral text-white py-4 rounded-[20px] font-black text-xl shadow-[0_6px_0_#D32F2F] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
+                  className="w-full bg-theme-coral text-white py-4 rounded-[1.25rem] font-black text-xl shadow-[0_0.375rem_0_#D32F2F] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
                 >
                   タイトルに戻る
                 </button>
                 <button
                   onClick={() => setShowExitConfirm(false)}
-                  className="w-full bg-gray-100 text-gray-500 py-4 rounded-[20px] font-black text-xl hover:bg-gray-200 transition-colors"
+                  className="w-full bg-gray-100 text-gray-500 py-4 rounded-[1.25rem] font-black text-xl hover:bg-gray-200 transition-colors"
                 >
                   つづける
                 </button>
@@ -839,7 +846,7 @@ export default function App() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="bg-white rounded-[40px] border-[8px] border-theme-blue p-8 md:p-12 shadow-2xl max-w-md w-full flex flex-col items-center text-center"
+              className="bg-white rounded-[2.5rem] border-[0.5rem] border-theme-blue p-8 md:p-12 shadow-2xl max-w-md w-full flex flex-col items-center text-center"
             >
               <div className="w-16 h-16 bg-theme-blue/10 rounded-full flex items-center justify-center mb-6">
                 <Shuffle className="w-8 h-8 text-theme-blue" />
@@ -853,13 +860,13 @@ export default function App() {
               <div className="flex flex-col w-full gap-3">
                 <button
                   onClick={shuffleDeck}
-                  className="w-full bg-theme-blue text-white py-4 rounded-[20px] font-black text-xl shadow-[0_6px_0_rgba(0,0,0,0.15)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
+                  className="w-full bg-theme-blue text-white py-4 rounded-[1.25rem] font-black text-xl shadow-[0_0.375rem_0_rgba(0,0,0,0.15)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
                 >
                   はい
                 </button>
                 <button
                   onClick={() => setShowShuffleConfirm(false)}
-                  className="w-full bg-gray-100 text-gray-500 py-4 rounded-[20px] font-black text-xl hover:bg-gray-200 transition-colors"
+                  className="w-full bg-gray-100 text-gray-500 py-4 rounded-[1.25rem] font-black text-xl hover:bg-gray-200 transition-colors"
                 >
                   いいえ
                 </button>
@@ -882,7 +889,7 @@ export default function App() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-yellow p-6 md:p-10 shadow-2xl max-w-md w-full flex flex-col relative"
+              className="bg-white rounded-[2rem] md:rounded-[2.5rem] border-[0.375rem] md:border-[0.5rem] border-theme-yellow p-6 md:p-10 shadow-2xl max-w-md w-full flex flex-col relative"
             >
               <button
                 onClick={() => setShowHints(false)}
@@ -906,7 +913,7 @@ export default function App() {
               </ol>
               <button
                 onClick={() => setShowHints(false)}
-                className="mt-6 w-full bg-gray-100 text-gray-500 py-3 rounded-[18px] font-black text-base hover:bg-gray-200 transition-colors"
+                className="mt-6 w-full bg-gray-100 text-gray-500 py-3 rounded-[1.125rem] font-black text-base hover:bg-gray-200 transition-colors"
               >
                 閉じる
               </button>
@@ -928,7 +935,7 @@ export default function App() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-blue p-6 md:p-10 shadow-2xl max-w-md w-full max-h-[85vh] flex flex-col relative"
+              className="bg-white rounded-[2rem] md:rounded-[2.5rem] border-[0.375rem] md:border-[0.5rem] border-theme-blue p-6 md:p-10 shadow-2xl max-w-md w-full max-h-[85vh] flex flex-col relative"
             >
               <button
                 onClick={() => setShowChangelog(false)}
@@ -954,10 +961,64 @@ export default function App() {
               </div>
               <button
                 onClick={() => setShowChangelog(false)}
-                className="mt-5 w-full bg-gray-100 text-gray-500 py-3 rounded-[18px] font-black text-base hover:bg-gray-200 transition-colors"
+                className="mt-5 w-full bg-gray-100 text-gray-500 py-3 rounded-[1.125rem] font-black text-base hover:bg-gray-200 transition-colors"
               >
                 閉じる
               </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Share Modal */}
+      <AnimatePresence>
+        {showShare && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-white rounded-[2rem] md:rounded-[2.5rem] border-[0.375rem] md:border-[0.5rem] border-theme-blue p-6 md:p-10 shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto flex flex-col items-center relative"
+            >
+              <button
+                onClick={() => setShowShare(false)}
+                aria-label="閉じる"
+                className="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors text-gray-500 hover:text-gray-800"
+              >
+                <div className="text-xl font-black">×</div>
+              </button>
+              <h2 className="self-start text-xl md:text-2xl font-black text-gray-900 mb-4 pr-10">共有する</h2>
+              <img src="share-qr.png" alt="タイムスターのQRコード" className="w-48 h-48 md:w-56 md:h-56 rounded-xl border-2 border-gray-100" />
+              <p className="mt-2 mb-5 text-xs md:text-sm font-bold text-gray-500 text-center">スマホのカメラで読み取ると、このゲームが開きます</p>
+              <div className="flex w-full flex-col gap-3">
+                <a
+                  href={LINE_SHARE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#06C755] text-white py-3 rounded-[1.125rem] font-black text-base text-center hover:opacity-90 transition-opacity"
+                >
+                  LINEで送る
+                </a>
+                <a
+                  href={X_SHARE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-black text-white py-3 rounded-[1.125rem] font-black text-base text-center hover:opacity-90 transition-opacity"
+                >
+                  Xで送る
+                </a>
+                <button
+                  onClick={() => setShowShare(false)}
+                  className="w-full bg-gray-100 text-gray-500 py-3 rounded-[1.125rem] font-black text-base hover:bg-gray-200 transition-colors"
+                >
+                  閉じる
+                </button>
+              </div>
             </motion.div>
           </motion.div>
         )}
@@ -976,7 +1037,7 @@ export default function App() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="bg-white rounded-[32px] md:rounded-[40px] border-[6px] md:border-[8px] border-theme-yellow p-6 md:p-10 shadow-2xl max-w-md w-full flex flex-col relative"
+              className="bg-white rounded-[2rem] md:rounded-[2.5rem] border-[0.375rem] md:border-[0.5rem] border-theme-yellow p-6 md:p-10 shadow-2xl max-w-md w-full flex flex-col relative"
             >
               <button
                 onClick={() => setShowOtherVersions(false)}
@@ -993,11 +1054,11 @@ export default function App() {
                     href={v.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`${v.color} flex items-center gap-3 rounded-[18px] px-5 py-4 text-white shadow-[0_5px_0_rgba(0,0,0,0.12)] hover:brightness-105 active:translate-y-0.5 active:shadow-none transition-all`}
+                    className={`${v.color} flex items-center gap-3 rounded-[1.125rem] px-5 py-4 text-white shadow-[0_0.3125rem_0_rgba(0,0,0,0.12)] hover:brightness-105 active:translate-y-0.5 active:shadow-none transition-all`}
                   >
                     <span className="flex-1 min-w-0">
                       <span className="block font-black text-base md:text-lg">{v.title}</span>
-                      <span className="block text-[11px] md:text-xs font-bold text-white/90">{v.description}</span>
+                      <span className="block text-[0.6875rem] md:text-xs font-bold text-white/90">{v.description}</span>
                     </span>
                     <ExternalLink className="w-5 h-5 shrink-0 opacity-90" />
                   </a>
@@ -1005,7 +1066,7 @@ export default function App() {
               </div>
               <button
                 onClick={() => setShowOtherVersions(false)}
-                className="mt-5 w-full bg-gray-100 text-gray-500 py-3 rounded-[18px] font-black text-base hover:bg-gray-200 transition-colors"
+                className="mt-5 w-full bg-gray-100 text-gray-500 py-3 rounded-[1.125rem] font-black text-base hover:bg-gray-200 transition-colors"
               >
                 閉じる
               </button>
@@ -1014,9 +1075,9 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <footer className="py-4 md:py-8 text-center text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em] shrink-0 flex flex-col items-center gap-2">
+      <footer className="py-4 md:py-8 text-center text-[0.625rem] text-gray-400 font-bold uppercase tracking-[0.3em] shrink-0 flex flex-col items-center gap-2">
         <span>&copy; 2026 TIMESTER • タイムスター {EDITION_NAME}</span>
-        <div className="flex items-center gap-3 normal-case tracking-normal font-black text-xs">
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 normal-case tracking-normal font-black text-xs">
           {FEEDBACK_FORM_URL ? (
             <>
               <a
@@ -1040,6 +1101,12 @@ export default function App() {
           >
             ￥100投げ銭する
           </a>
+          <span className="text-gray-300" aria-hidden>
+            |
+          </span>
+          <button type="button" onClick={() => setShowShare(true)} className="text-theme-blue hover:text-theme-coral hover:underline">
+            共有する
+          </button>
         </div>
       </footer>
     </div>
