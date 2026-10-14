@@ -35,10 +35,27 @@ const components: Components = {
   ),
 };
 
-export function HowToPlayBody() {
+/** HOW_TO_PLAY.md の <example-button></example-button> の場所に出すボタン */
+function exampleButton(onShowExample?: () => void) {
+  return () =>
+    onShowExample ? (
+      <div className="not-prose my-4 flex justify-center">
+        <button
+          type="button"
+          onClick={onShowExample}
+          className="w-full md:w-auto bg-white text-theme-blue px-6 md:px-12 py-3 rounded-[1.25rem] font-black text-base md:text-lg border-2 border-theme-blue/40 shadow-[0_0.3125rem_0_rgba(77,150,255,0.2)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
+        >
+          ▶ ゲームのやりかたの例を見る
+        </button>
+      </div>
+    ) : null;
+}
+
+export function HowToPlayBody({ onShowExample }: { onShowExample?: () => void }) {
+  const allComponents = { ...components, 'example-button': exampleButton(onShowExample) } as Components;
   return (
     <div className="prose prose-slate max-w-none">
-      <ReactMarkdown rehypePlugins={[rehypeRaw]} components={components}>
+      <ReactMarkdown rehypePlugins={[rehypeRaw]} components={allComponents}>
         {stripLeadingComment(howToPlayMd)}
       </ReactMarkdown>
     </div>

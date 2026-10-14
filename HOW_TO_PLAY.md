@@ -7,6 +7,7 @@
   書き方:
   - 段落・見出しは Markdown（## 見出し、**太字**、[表示名](URL)、- リスト）
   - レイアウト用のブロックは HTML（既存と同じ Tailwind の class 名）も可
+  - <example-button></example-button> の場所に「ゲームのやりかたの例を見る」ボタンが出ます
 -->
 
 <img src="howto-header.png" alt="TIMESTER タイムスター 現代アイテム" class="mb-6 w-full" />
@@ -14,7 +15,8 @@
 ## あそびかた
 
 このゲームは「タイムスター」といいます。  
-身近な商品が**日本で発売された年**をあてて、年の順番に並べていくゲームです。
+身近な商品が**日本で発売された年**をあてて、年の順番に並べていくゲームです。  
+最後まで**完全無料**で遊ぶことができます。
 
 > 着想のもとになったボードゲーム HITSTER（音楽のヒット年を並べるゲーム）も、ぜひ [公式情報](https://hitstergame.com/ja-jp/) からご覧ください。
 
@@ -38,12 +40,14 @@
   <ul class="text-sm leading-relaxed text-gray-600 list-disc pl-5 space-y-1.5 marker:text-gray-500">
     <li>スマホ1台（タブレットやPCでも可）。テーブルの真ん中に置き、みんなで画面を見ます</li>
     <li>机</li>
-    <li>折り紙を1/4に切ったもの（人数×5枚）</li>
+    <li>折り紙を1/4に切ったもの（人数×5枚）<br /><span class="text-xs text-gray-500">似たようなサイズの紙なら何でも可</span></li>
     <li>鉛筆を参加人数分</li>
   </ul>
 </div>
 
 <h3 class="text-2xl font-black font-display uppercase tracking-tight mt-8 mb-0 text-gray-900">ゲームの進め方</h3>
+
+<example-button></example-button>
 
 <div class="space-y-4 text-gray-700 bg-white p-6 rounded-3xl border-4 border-theme-bg shadow-inner">
   <div class="flex gap-4">

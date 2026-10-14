@@ -385,6 +385,8 @@ export default function App() {
                       className="bg-white text-theme-blue px-2 py-3 md:py-4 rounded-[1rem] md:rounded-[1.125rem] font-black text-sm sm:text-base md:text-lg whitespace-nowrap border-2 border-theme-blue/30 shadow-[0_0.3125rem_0_rgba(77,150,255,0.2)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
                     >
                       収録アイテム一覧
+                      {/* スマホでは幅が足りないので、点数は小さくして改行する */}
+                      <span className="block sm:inline text-[0.7rem] sm:text-base md:text-lg leading-tight">（{ITEMS.length}点）</span>
                     </button>
                   </div>
                   <button
@@ -397,7 +399,7 @@ export default function App() {
                   </button>
                 </div>
                 <p className="mt-5 md:mt-8 text-[0.6875rem] md:text-xs text-gray-400 font-bold">
-                  v{APP_VERSION}・更新日 {LAST_UPDATED}・収録 {ITEMS.length} アイテム
+                  v{APP_VERSION}・更新日 {LAST_UPDATED}
                 </p>
                 </div>
                 <div className="mt-4 md:mt-6 flex items-center gap-3">
@@ -440,16 +442,9 @@ export default function App() {
                   <div className="text-xl font-black">×</div>
                 </button>
                 <div className="bg-white rounded-[2.5rem] border-[0.5rem] border-theme-yellow p-6 md:p-12 shadow-[0.75rem_0.75rem_0_#FFD93D] overflow-y-auto max-h-[80vh] custom-scrollbar">
-                <HowToPlayBody />
+                <HowToPlayBody onShowExample={() => setShowExample(true)} />
 
                 <div className="mt-10 mx-auto flex w-full md:w-fit flex-col gap-4">
-                  <button
-                    type="button"
-                    onClick={() => setShowExample(true)}
-                    className="bg-white text-theme-blue px-8 md:px-16 py-3 md:py-4 rounded-[1.25rem] font-black text-base md:text-xl whitespace-nowrap border-2 border-theme-blue/40 shadow-[0_0.3125rem_0_rgba(77,150,255,0.2)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
-                  >
-                    やり方の例をみる
-                  </button>
                   <button
                     onClick={startGame}
                     className="bg-theme-coral text-white px-8 md:px-16 py-4 md:py-5 rounded-[1.25rem] font-black text-lg md:text-2xl whitespace-nowrap shadow-[0_0.375rem_0_#D32F2F] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 md:gap-3 uppercase"
@@ -786,17 +781,10 @@ export default function App() {
               </button>
 
               <div className="overflow-y-auto custom-scrollbar flex-1 pr-2">
-                <HowToPlayBody />
+                <HowToPlayBody onShowExample={() => setShowExample(true)} />
               </div>
 
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => setShowExample(true)}
-                  className="bg-white text-theme-blue px-8 py-4 rounded-[1.25rem] font-black text-xl border-2 border-theme-blue/40 hover:scale-105 transition-all"
-                >
-                  やり方の例をみる
-                </button>
+              <div className="mt-8 flex justify-center">
                 <button
                   onClick={() => setShowRules(false)}
                   className="bg-theme-blue text-white px-12 py-4 rounded-[1.25rem] font-black text-xl shadow-[0_0.375rem_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
