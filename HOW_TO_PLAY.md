@@ -59,7 +59,7 @@
     <div class="bg-theme-coral text-white font-bold w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center text-sm tabular-nums mt-0.5">2</div>
     <div class="text-sm min-w-0 space-y-2">
       <p>
-        <strong>番の人</strong>は、画面に出た<strong>商品名</strong>を見て、その商品が<strong>自分の前に並んでいる紙</strong>のどこに入るかを予想します。
+        <strong>順番が来た人</strong>は、画面に出た<strong>商品名</strong>を見て、その商品が<strong>自分の前に並んでいる紙</strong>のどこに入るかを予想します。
         <strong>左が「前（古い）」、右が「後（新しい）」</strong>です。用意してある紙を1枚とり、予想した位置に置きます。
       </p>
       <p class="text-gray-500">注意：商品名を見ても、それが何なのか分からないときは、<strong>「パス」</strong>で次のカードに進めます。</p>

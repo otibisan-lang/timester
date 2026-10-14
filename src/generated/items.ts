@@ -460,8 +460,8 @@ export const ITEMS: Item[] = [
   },
   {
     "id": "item-62",
-    "name": "ファービー",
-    "yomi": "",
+    "name": "ファービー人形",
+    "yomi": "ふぁーびーにんぎょう",
     "releaseYear": 1999,
     "maker": "トミー(現・タカラトミー)",
     "trivia": "トミー(本国米国は1998年)"

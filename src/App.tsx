@@ -9,6 +9,7 @@ import { Play, RotateCcw, Info, Trophy, ArrowRight, Shuffle, ExternalLink, Light
 import { ITEMS } from './generated/items';
 import { Item, GameState } from './types';
 import { HowToPlayBody } from './HowToPlayBody';
+import { ExampleSlides } from './ExampleSlides';
 import { CHANGELOG } from './changelog';
 import { toWareki } from './wareki';
 
@@ -169,6 +170,7 @@ export default function App() {
   const [showHints, setShowHints] = useState(false);
   const [showChangelog, setShowChangelog] = useState(false);
   const [showShare, setShowShare] = useState(false);
+  const [showExample, setShowExample] = useState(false);
 
   useEffect(() => {
     document.title = `TIMESTER タイムスター ${EDITION_NAME}`;
@@ -441,6 +443,13 @@ export default function App() {
                 <HowToPlayBody />
 
                 <div className="mt-10 mx-auto flex w-full md:w-fit flex-col gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowExample(true)}
+                    className="bg-white text-theme-blue px-8 md:px-16 py-3 md:py-4 rounded-[1.25rem] font-black text-base md:text-xl whitespace-nowrap border-2 border-theme-blue/40 shadow-[0_0.3125rem_0_rgba(77,150,255,0.2)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
+                  >
+                    やり方の例をみる
+                  </button>
                   <button
                     onClick={startGame}
                     className="bg-theme-coral text-white px-8 md:px-16 py-4 md:py-5 rounded-[1.25rem] font-black text-lg md:text-2xl whitespace-nowrap shadow-[0_0.375rem_0_#D32F2F] hover:scale-105 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-2 md:gap-3 uppercase"
@@ -780,7 +789,14 @@ export default function App() {
                 <HowToPlayBody />
               </div>
 
-              <div className="mt-8 flex justify-center">
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowExample(true)}
+                  className="bg-white text-theme-blue px-8 py-4 rounded-[1.25rem] font-black text-xl border-2 border-theme-blue/40 hover:scale-105 transition-all"
+                >
+                  やり方の例をみる
+                </button>
                 <button
                   onClick={() => setShowRules(false)}
                   className="bg-theme-blue text-white px-12 py-4 rounded-[1.25rem] font-black text-xl shadow-[0_0.375rem_0_rgba(0,0,0,0.1)] hover:scale-105 active:translate-y-1 active:shadow-none transition-all"
@@ -969,6 +985,9 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* やり方の例（ほかのウインドウの上に重ねる） */}
+      <AnimatePresence>{showExample && <ExampleSlides onClose={() => setShowExample(false)} />}</AnimatePresence>
 
       {/* Share Modal */}
       <AnimatePresence>

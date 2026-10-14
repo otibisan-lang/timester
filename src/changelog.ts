@@ -10,6 +10,11 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.6.0',
+    date: '2026-10-14',
+    changes: ['「あそびかた」に「やり方の例をみる」を追加しました（1人の紙の並び方を、1枚ずつ見られます）。', 'アイテム名を分かりやすくしました（1つ）。'],
+  },
+  {
     version: '1.5.0',
     date: '2026-10-14',
     changes: ['「共有する」を追加しました（QRコード・LINE・X）。', 'タブレットでは、画面の大きさに合わせて文字やボタンが大きく表示されるようにしました。'],
