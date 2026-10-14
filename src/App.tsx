@@ -398,11 +398,11 @@ export default function App() {
                     ゲームを始める
                   </button>
                 </div>
-                <p className="mt-5 md:mt-8 text-[0.6875rem] md:text-xs text-gray-400 font-bold">
+                </div>
+                <p className="mt-4 md:mt-6 text-[0.6875rem] md:text-xs text-gray-400 font-bold">
                   v{APP_VERSION}・更新日 {LAST_UPDATED}
                 </p>
-                </div>
-                <div className="mt-4 md:mt-6 flex items-center gap-3">
+                <div className="mt-2 md:mt-3 flex items-center gap-3">
                   <button
                     type="button"
                     onClick={() => setShowOtherVersions(true)}
